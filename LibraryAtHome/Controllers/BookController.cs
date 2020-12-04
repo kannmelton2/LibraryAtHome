@@ -24,6 +24,8 @@ namespace LibraryAtHome.Controllers
         }
 
         // HTTP GET METHODS
+
+        [HttpGet]
         public IActionResult GetAllBooks()
         {
             var books = _repo.GetBooks();

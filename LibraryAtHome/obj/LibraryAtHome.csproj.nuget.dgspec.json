@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kayla\\source\\repos\\LibraryAtHome\\LibraryAtHome\\LibraryAtHome.csproj": {}
+    "C:\\Users\\Kayla\\source\\repos\\e11\\LibraryAtHome\\LibraryAtHome\\LibraryAtHome.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kayla\\source\\repos\\LibraryAtHome\\LibraryAtHome\\LibraryAtHome.csproj": {
+    "C:\\Users\\Kayla\\source\\repos\\e11\\LibraryAtHome\\LibraryAtHome\\LibraryAtHome.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kayla\\source\\repos\\LibraryAtHome\\LibraryAtHome\\LibraryAtHome.csproj",
+        "projectUniqueName": "C:\\Users\\Kayla\\source\\repos\\e11\\LibraryAtHome\\LibraryAtHome\\LibraryAtHome.csproj",
         "projectName": "LibraryAtHome",
-        "projectPath": "C:\\Users\\Kayla\\source\\repos\\LibraryAtHome\\LibraryAtHome\\LibraryAtHome.csproj",
+        "projectPath": "C:\\Users\\Kayla\\source\\repos\\e11\\LibraryAtHome\\LibraryAtHome\\LibraryAtHome.csproj",
         "packagesPath": "C:\\Users\\Kayla\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kayla\\source\\repos\\LibraryAtHome\\LibraryAtHome\\obj\\",
+        "outputPath": "C:\\Users\\Kayla\\source\\repos\\e11\\LibraryAtHome\\LibraryAtHome\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kayla\\AppData\\Roaming\\NuGet\\NuGet.Config",

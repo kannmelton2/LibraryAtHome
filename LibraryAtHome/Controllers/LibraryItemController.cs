@@ -9,27 +9,27 @@ using LibraryAtHome.Models;
 
 namespace LibraryAtHome.Controllers
 {
-    [Route("api/borrower")]
+    [Route("api/libraryItem")]
     [ApiController]
-    public class BorrowerController : ControllerBase
+    public class LibraryItemController : ControllerBase
     {
-        // field for repo
-        readonly BorrowerRepository _repo;
+        // field for repository
+        readonly LibraryItemRepository _repo;
 
         // constructor
-        public BorrowerController()
+        public LibraryItemController()
         {
-            _repo = new BorrowerRepository();
+            _repo = new LibraryItemRepository();
         }
 
         // HTTP GET METHODS
 
         [HttpGet]
-        public IActionResult GetAllBorrowers()
+        public IActionResult GetAllLibraryItems()
         {
-            var borrowers = _repo.GetBorrowers();
+            var libraryItems = _repo.GetLibraryItems();
 
-            return Ok(borrowers);
+            return Ok(libraryItems);
         }
     }
 }
