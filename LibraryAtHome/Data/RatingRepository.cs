@@ -12,5 +12,14 @@ namespace LibraryAtHome.Data
     {
         const string _connectionString = "Server=localhost;Database=LibraryAtHome;Trusted_Connection=True;";
 
+        public List<Rating> GetRatings()
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var allRatings = db.Query<Rating>("select * from Rating");
+
+            return allRatings.ToList();
+        }
+
     }
 }
