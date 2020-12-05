@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
 
 import './App.scss';
 
@@ -14,12 +20,20 @@ class App extends React.Component {
     const { authed } = this.state;
     return (
       <div className="App">
-        <MyNavbar authed={authed} />
-        <header className="App-header">
-          <h1>LibraryAtHome</h1>
-        </header>
-        <Auth />
-        <Home />
+        <BrowserRouter>
+          <React.Fragment>
+            <MyNavbar authed={authed} />
+            <div className="container">
+              <div className="row">
+              <Switch>
+                <Route path='/home' component={Home} authed={authed} />
+                <Route path="/auth" component={Auth} authed={authed}/>
+                <Redirect from= "*" to="/home"/>
+              </Switch>
+              </div>
+            </div>
+          </React.Fragment>
+        </BrowserRouter>
       </div>
     );
   }

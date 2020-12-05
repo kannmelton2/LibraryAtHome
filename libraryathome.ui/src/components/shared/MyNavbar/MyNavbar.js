@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink as RRNavLink } from 'react-router-dom';
 import {
     Collapse,
     Navbar,
@@ -31,10 +32,7 @@ class MyNavbar extends React.Component {
               return (
                 <Nav className="mr-auto" navbar>
                     <NavItem>
-                        <NavLink href="/components/">Components</NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                        <NavLink tag={RRNavLink} to="">Browse Books</NavLink>
                     </NavItem>
                 </Nav>
               );
@@ -45,7 +43,7 @@ class MyNavbar extends React.Component {
         return(
             <div className="MyNavbar">
                 <Navbar color="dark" dark expand="md">
-                    <NavbarBrand href="/">LibraryAtHome</NavbarBrand>
+                    <NavbarBrand to="/home">LibraryAtHome</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     {buildNavbar()}
