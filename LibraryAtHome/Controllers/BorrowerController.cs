@@ -23,11 +23,21 @@ namespace LibraryAtHome.Controllers
         }
 
         // HTTP GET METHODS
+
+        [HttpGet]
         public IActionResult GetAllBorrowers()
         {
             var borrowers = _repo.GetBorrowers();
 
             return Ok(borrowers);
+        }
+
+        [HttpPost]
+        public IActionResult CreateBorrower(Borrower borrower)
+        {
+            var borrowerId = _repo.CreateNewBorrower(borrower.FirstName, borrower.LastName, borrower.Email, borrower.UserId);
+
+            return Ok(borrowerId);
         }
     }
 }
