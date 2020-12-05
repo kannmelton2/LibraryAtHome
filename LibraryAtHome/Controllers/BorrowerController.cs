@@ -31,5 +31,13 @@ namespace LibraryAtHome.Controllers
 
             return Ok(borrowers);
         }
+
+        [HttpPost]
+        public IActionResult CreateBorrower(Borrower borrower)
+        {
+            var borrowerId = _repo.CreateNewBorrower(borrower.FirstName, borrower.LastName, borrower.Email, borrower.UserId);
+
+            return Ok(borrowerId);
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LibraryAtHome.Data;
+using LibraryAtHome.Models;
 
 namespace LibraryAtHome.Controllers
 {
@@ -29,6 +30,15 @@ namespace LibraryAtHome.Controllers
             var loans = _repo.GetLoans();
 
             return Ok(loans);
+        }
+
+        // HTTP POST METHODS
+        [HttpPost]
+        public IActionResult CreateLoan(Loan loan)
+        {
+            var loanId = _repo.CreateNewLoan(loan.UserId, loan.BorrowerId);
+
+            return Ok(loanId);
         }
     }
 }

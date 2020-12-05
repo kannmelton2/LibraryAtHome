@@ -23,10 +23,22 @@ namespace LibraryAtHome.Controllers
 
         // HTTP GET METHODS
 
+        // get all loan items
         [HttpGet]
         public IActionResult GetAllLoanItems()
         {
             var loanItems = _repo.GetLoanItems();
+
+            return Ok(loanItems);
+        }
+
+        // get loan itmes by loanId
+        [HttpGet("{loanId}")]
+        public IActionResult GetLoanItemsByLoanId(int loanId)
+        {
+            var loanItems = _repo.GetLoanItemsWithLoanId(loanId);
+
+            if (loanItems == null) return NotFound("No Loan with that Id");
 
             return Ok(loanItems);
         }

@@ -22,5 +22,20 @@ namespace LibraryAtHome.Data
             return allLoanItems.ToList();
         }
 
+        // GET LOANS BY LOANID 
+        public List<LoanItem> GetLoanItemsWithLoanId(int loanId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"Select *
+                          From LoanItem
+                          Where LoanId = @loan";
+
+            var parameters = new { loan = loanId };
+
+            var loanItems = db.Query<LoanItem>(query, parameters);
+
+            return loanItems.ToList();
+        }
     }
 }

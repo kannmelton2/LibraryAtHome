@@ -34,5 +34,13 @@ namespace LibraryAtHome.Controllers
             return Ok(allUsers);
         }
 
+        // HTTP POST METHODS
+        public IActionResult CreateUser(User user)
+        {
+            var userId = _repo.CreateNewUser(user.FirstName, user.LastName, user.Email);
+
+            return Ok(userId);
+        }
+
     }
 }

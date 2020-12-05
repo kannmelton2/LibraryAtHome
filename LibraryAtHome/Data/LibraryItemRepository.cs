@@ -21,5 +21,21 @@ namespace LibraryAtHome.Data
 
             return libraryItems.ToList();
         }
+
+        // GET LIBRARY ITEMS WITH LIBRARYID
+        public List<LibraryItem> GetLibraryItemsWithLibraryId(int libraryId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"Select *
+                          From LibraryItem
+                          Where LibraryId = @library";
+
+            var parameters = new { library = libraryId };
+
+            var libraryItems = db.Query<LibraryItem>(query, parameters);
+
+            return libraryItems.ToList();
+        }
     }
 }

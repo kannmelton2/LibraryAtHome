@@ -22,5 +22,29 @@ namespace LibraryAtHome.Data
             return allBorrowers.ToList();
         } 
 
+        // CREATE A NEW BORROWER
+        public int CreateNewBorrower(string firstName, string lastName, string emailAddress, int userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"INSERT INTO [dbo].[Borrower]
+                            ([UserId]
+                            ,[FirstName]
+                            ,[LastName]
+                            ,[Email])
+                            OUTPUT Inserted.BorrowerId
+                        VALUES
+                            (@user
+                            ,@first
+                            ,@last
+                            ,@email)";
+
+            var parameters = new { user = userId, first = firstName, last = lastName, email = emailAddress };
+
+            var newBorrowerId = db.QuerySingle<int>(query, parameters);
+
+            return newBorrowerId;
+        }
+
     }
 }
