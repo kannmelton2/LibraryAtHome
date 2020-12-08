@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import authData from '../../../helpers/data/authData';
 
@@ -10,6 +11,7 @@ class RegisterUser extends React.Component {
         newLastName: '',
         newEmail: '',
         newPassword: '',
+        newLibraryName: '',
          }
 
     newFirstName = (e) => {
@@ -47,9 +49,9 @@ class RegisterUser extends React.Component {
         email:  newEmail,
         password:  newPassword,
     };
-    
+
     authData.registerUser(newUser)
-    .then(() => this.props.history.push('/login'))
+    .then(() => this.props.history.push('/add-new-library'))
     .catch((err) => console.error('unable to add new User'))
     }
 
@@ -58,13 +60,13 @@ class RegisterUser extends React.Component {
             newFirstName,
             newLastName,
             newEmail,
-            newPassword
+            newPassword,
         } = this.state;
 
         return(
             <div className="RegisterUser">
                 <h1>Welcome to Library At Home</h1>
-                <p>Please register to make use of our services:</p>
+                <p>Please log in register to make use of our services:</p>
       <form className="col-6 offset-3 text-left">
         <div className="form-group">
         <label htmlFor="new-first-name">First Name</label>
@@ -106,7 +108,8 @@ class RegisterUser extends React.Component {
         onChange={this.newPassword}
         />
         </div>
-        <button className="btn btn-secondary" onClick={this.saveNewUser}>Save New User</button>
+        <Link className="btn btn-dark m-2" to="/auth">Log in</Link>
+        <button className="btn btn-primary m-2" onClick={this.saveNewUser}>Save New User</button>
       </form>
             </div>
         )

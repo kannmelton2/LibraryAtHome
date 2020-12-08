@@ -11,12 +11,21 @@ import {
 
   } from 'reactstrap';
 
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
 import './MyNavbar.scss';
 
 class MyNavbar extends React.Component {
     state = {
         isOpen: false,
     }
+
+    logMeOut = (e) => {
+        e.preventDefault();
+        firebase.auth().signOut();
+        <NavLink className="navbar-links" tag={RRNavLink} to='/login'>LogIn</NavLink>
+      }
 
 
     toggle = () => {
@@ -25,16 +34,15 @@ class MyNavbar extends React.Component {
 
     render() {
         const { isOpen } = this.state;
+        const { authed } = this.props;
 
         const buildNavbar = () => {
             const { authed } = this.props;
             if (authed) {
               return (
-                <Nav className="mr-auto" navbar>
                     <NavItem>
                         <NavLink tag={RRNavLink} to="">Browse Books</NavLink>
                     </NavItem>
-                </Nav>
               );
             }
             return <Nav className="mr-auto" navbar></Nav>;
@@ -43,10 +51,22 @@ class MyNavbar extends React.Component {
         return(
             <div className="MyNavbar">
                 <Navbar color="dark" dark expand="md">
-                    <NavbarBrand to="/home">LibraryAtHome</NavbarBrand>
+                    <NavbarBrand tag={RRNavLink} to="/home">LibraryAtHome</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={isOpen} navbar>
+                <Nav className="mr-auto" navbar>
                     {buildNavbar()}
+                    {
+                    authed ?
+                        <NavItem>
+                            <button className="btn btn-warning" onClick={this.logMeOut}>Log Out</button>
+                        </NavItem>
+                    :
+                        <NavItem>
+                            <NavLink className="btn btn-info" tag={RRNavLink} to='/auth'>LogIn</NavLink>
+                        </NavItem>
+                   }
+                </Nav>
                 </Collapse>
                 </Navbar>
             </div>

@@ -32,7 +32,7 @@ const registerUser = (user) => {
       //save the token to the session storage
       .then(token => sessionStorage.setItem('token',token))
       //save the user to the the api
-      .then(() => axios.post(`${baseUrl}/users`, userInfo));
+      .then(() => axios.post(`${baseUrl}/user`, userInfo));
   });
 };
 
