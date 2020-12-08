@@ -34,6 +34,14 @@ namespace LibraryAtHome.Controllers
             return Ok(allUsers);
         }
 
+        [HttpGet("{email}")]
+        public IActionResult GetUserByEmail(string email)
+        {
+            var authenticatedUser = _repo.GetUserWithEmail(email);
+
+            return Ok(authenticatedUser);
+        }
+
         // HTTP POST METHODS
         [HttpPost]
         public IActionResult CreateUserAndLibrary(User user)

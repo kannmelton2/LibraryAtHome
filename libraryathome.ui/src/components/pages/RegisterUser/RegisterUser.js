@@ -11,7 +11,6 @@ class RegisterUser extends React.Component {
         newLastName: '',
         newEmail: '',
         newPassword: '',
-        newLibraryName: '',
          }
 
     newFirstName = (e) => {
