@@ -57,8 +57,6 @@ class RegisterUser extends React.Component {
         libraryName: librarysName,
     };
 
-    console.log('new user:', newUser);
-
     authData.registerUser(newUser)
     .then(() => this.props.history.push('/home'))
     .catch((err) => console.error('unable to add new User'))
