@@ -22,6 +22,22 @@ namespace LibraryAtHome.Data
             return allUsers.ToList();
         }
 
+        // GET USER BY EMAIL
+        internal User GetUserWithEmail(string userEmail)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"SELECT *
+                          FROM [User]
+                          WHERE email = @email";
+
+            var parameters = new { email = userEmail };
+
+            var authedUser = db.QueryFirstOrDefault<User>(query, parameters);
+
+            return authedUser;
+        }
+
         // CREATE A NEW USER
         public int CreateNewUser(string firstName, string lastName, string emailAddress)
         {

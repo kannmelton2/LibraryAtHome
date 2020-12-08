@@ -40,7 +40,11 @@ namespace LibraryAtHome
 
             app.UseRouting();
 
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
