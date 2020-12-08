@@ -13,7 +13,6 @@ import './App.scss';
 
 import fbConnection from '../helpers/data/connection';
 
-import AddNewLibrary from '../components/pages/AddNewLibrary/AddNewLibrary';
 import Auth from '../components/pages/Auth/Auth';
 import Home from '../components/pages/Home/Home';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
@@ -52,7 +51,6 @@ class App extends React.Component {
               <Switch>
                 <Route path='/home' component={Home} authed={authed} />
                 <Route path="/register" component={RegisterUser} authed={authed} />
-                <Route path="/add-new-library" component={AddNewLibrary} authed={authed} />
                 <Route path="/auth" component={Auth} authed={authed}/>
                 { authed ?
                 <Redirect from="*" to="/home" />

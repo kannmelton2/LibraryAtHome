@@ -7,59 +7,70 @@ import './RegisterUser.scss';
 
 class RegisterUser extends React.Component {
     state = {
-        newFirstName: '',
-        newLastName: '',
-        newEmail: '',
-        newPassword: '',
+        userFirstName: '',
+        userLastName: '',
+        userEmail: '',
+        userPassword: '',
+        librarysName: ``,
          }
 
-    newFirstName = (e) => {
-        e.preventDefault();
-        this.setState({ newFirstName: e.target.value});
-    }
-        
-    newLastName = (e) => {
-        e.preventDefault();
-        this.setState({ newLastName: e.target.value});
+    libraryNameChange = (e) => {
+      e.preventDefault();
+      this.setState({ librarysName: e.target.value });
     }
 
-    newEmail = (e) => {
+    firstNameChange = (e) => {
         e.preventDefault();
-        this.setState({ newEmail: e.target.value});
+        this.setState({ userFirstName: e.target.value});
+    }
+        
+    lastNameChange = (e) => {
+        e.preventDefault();
+        this.setState({ userLastName: e.target.value});
+    }
+
+    emailChange = (e) => {
+        e.preventDefault();
+        this.setState({ userEmail: e.target.value});
       }
     
-      newPassword = (e) => {
+      passwordChange = (e) => {
         e.preventDefault();
-        this.setState({ newPassword: e.target.value});
+        this.setState({ userPassword: e.target.value});
       }
 
       saveNewUser = (e) => {
         e.preventDefault();
         const {
-          newFirstName,
-          newLastName,
-          newEmail,
-          newPassword,
+          userFirstName,
+          userLastName,
+          userEmail,
+          userPassword,
+          librarysName,
         } = this.state;
     
     const newUser = {
-        firstName: newFirstName,
-        lastName: newLastName,
-        email:  newEmail,
-        password:  newPassword,
+        firstName: userFirstName,
+        lastName: userLastName,
+        email:  userEmail,
+        password:  userPassword,
+        libraryName: librarysName,
     };
 
+    console.log('new user:', newUser);
+
     authData.registerUser(newUser)
-    .then(() => this.props.history.push('/add-new-library'))
+    .then(() => this.props.history.push('/home'))
     .catch((err) => console.error('unable to add new User'))
     }
 
     render() {
         const {
-            newFirstName,
-            newLastName,
-            newEmail,
-            newPassword,
+            userFirstName,
+            userLastName,
+            userEmail,
+            userPassword,
+            librarysName,
         } = this.state;
 
         return(
@@ -68,43 +79,53 @@ class RegisterUser extends React.Component {
                 <p>Please log in register to make use of our services:</p>
       <form className="col-6 offset-3 text-left">
         <div className="form-group">
-        <label htmlFor="new-first-name">First Name</label>
+        <label htmlFor="user-first-name">First Name</label>
       <input
         type="text"
         className="form-control"
-        id="new-name"
-        value={newFirstName}
-        onChange={this.newFirstName}
+        id="user-first-name"
+        value={userFirstName}
+        onChange={this.firstNameChange}
         />
         </div>
         <div className="form-group">
-        <label htmlFor="new-last-name">Last Name</label>
+        <label htmlFor="user-last-name">Last Name</label>
       <input
         type="text"
         className="form-control"
-        id="new-last-name"
-        value={newLastName}
-        onChange={this.newLastName}
+        id="user-last-name"
+        value={userLastName}
+        onChange={this.lastNameChange}
         />
         </div>
         <div className="form-group">
-        <label htmlFor="new-email">Email</label>
+        <label htmlFor="library-name">Library Name</label>
+      <input
+        type="text"
+        className="form-control"
+        id="library-name"
+        value={librarysName}
+        onChange={this.libraryNameChange}
+        />
+        </div>
+        <div className="form-group">
+        <label htmlFor="user-email">Email</label>
       <input
         type="email"
         className="form-control"
-        id="new-email"
-        value={newEmail}
-        onChange={this.newEmail}
+        id="user-email"
+        value={userEmail}
+        onChange={this.emailChange}
         />
         </div>
         <div className="form-group">
-        <label htmlFor="new-password">Password</label>
+        <label htmlFor="user-password">Password</label>
       <input
         type="password"
         className="form-control"
-        id="new-password"
-        value={newPassword}
-        onChange={this.newPassword}
+        id="user-password"
+        value={userPassword}
+        onChange={this.passwordChange}
         />
         </div>
         <Link className="btn btn-dark m-2" to="/auth">Log in</Link>

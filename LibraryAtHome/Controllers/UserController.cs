@@ -17,11 +17,13 @@ namespace LibraryAtHome.Controllers
     {
         // create a repo field to instantiate the User Repository
         readonly UserRepository _repo;
+        readonly LibraryRepository _libraryRepo;
 
         // constructor 
         public UserController()
         {
             _repo = new UserRepository();
+            _libraryRepo = new LibraryRepository();
         }
 
         // HTTP GET METHODS
@@ -44,9 +46,11 @@ namespace LibraryAtHome.Controllers
 
         // HTTP POST METHODS
         [HttpPost]
-        public IActionResult CreateUserAndLibrary(User user)
+        public IActionResult CreateUserAndLibrary(UserLibrary userLibrary)
         {
-            var userId = _repo.CreateNewUser(user.FirstName, user.LastName, user.Email);
+            var userId = _repo.CreateNewUser(userLibrary.FirstName, userLibrary.LastName, userLibrary.Email);
+
+            _libraryRepo.CreateNewLibrary(userId, userLibrary.LibraryName);
 
             return Ok(userId);
         }
