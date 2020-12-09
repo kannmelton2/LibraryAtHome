@@ -41,7 +41,7 @@ class MyNavbar extends React.Component {
             if (authed) {
               return (
                     <NavItem>
-                        <NavLink tag={RRNavLink} to="">Browse Books</NavLink>
+                        <NavLink tag={RRNavLink} to="/browse-books">Browse Books</NavLink>
                     </NavItem>
               );
             }

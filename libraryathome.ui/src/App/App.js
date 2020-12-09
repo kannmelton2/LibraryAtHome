@@ -14,6 +14,7 @@ import './App.scss';
 import fbConnection from '../helpers/data/connection';
 
 import Auth from '../components/pages/Auth/Auth';
+import BrowseBooks from '../components/pages/BrowseBooks/BrowseBooks';
 import Home from '../components/pages/Home/Home';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import RegisterUser from '../components/pages/RegisterUser/RegisterUser';
@@ -51,7 +52,8 @@ class App extends React.Component {
               <Switch>
                 <Route path='/home' component={Home} authed={authed} />
                 <Route path="/register" component={RegisterUser} authed={authed} />
-                <Route path="/auth" component={Auth} authed={authed}/>
+                <Route path="/auth" component={Auth} authed={authed} />
+                <Route path="/browse-books" component={BrowseBooks} authed={authed} />
                 { authed ?
                 <Redirect from="*" to="/home" />
                 :
