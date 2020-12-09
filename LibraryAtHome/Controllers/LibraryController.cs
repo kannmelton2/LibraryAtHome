@@ -24,12 +24,20 @@ namespace LibraryAtHome.Controllers
 
         // HTTP GET METHODS
 
-         [HttpGet]
-         public IActionResult GetAllLibraries()
+        [HttpGet]
+        public IActionResult GetAllLibraries()
         {
             var libraries = _repo.GetLibraries();
 
             return Ok(libraries);
+        }
+
+        [HttpGet("{userId}")]
+        public IActionResult GetLibraryByUserId(int userId)
+        {
+            var library = _repo.GetLibraryWithUserId(userId);
+
+            return Ok(library);
         }
 
         // HTTP POST METHODS
