@@ -1,7 +1,10 @@
 import axios from 'axios';
 import {baseUrl} from '../data/constants.json';
 
-const addNewLibrary = (newLibrary) => {
-    axios.post(`${baseUrl}/library`, newLibrary)};
+const getLibraryByUserId = (userId) => new Promise((resolve, reject) => {
+    axios.get(`${baseUrl}/library/${userId}`)
+    .then((response) => resolve(response.data))
+    .catch((err) => reject(err));
+})
 
-export default { addNewLibrary };
+export default { getLibraryByUserId };

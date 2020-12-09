@@ -21,6 +21,19 @@ import RegisterUser from '../components/pages/RegisterUser/RegisterUser';
 
 fbConnection();
 
+const PublicRoute = ({ component: Component, authed, ...rest }) => {
+  const routeChecker = (props) => (authed === false
+    ? (<Component {...props} />)
+    : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
+  return <Route {...rest} render={(props) => routeChecker(props)} />;
+};
+const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+  const routeChecker = (props) => (authed === true
+    ? (<Component {...props} />)
+    : (<Redirect to={{ pathname: '/auth', state: { from: props.location } }} />));
+  return <Route {...rest} render={(props) => routeChecker(props)} />;
+};
+
 class App extends React.Component {
   state = {
     authed: false,
@@ -50,15 +63,11 @@ class App extends React.Component {
             <div className="container">
               <div className="row">
               <Switch>
-                <Route path='/home' component={Home} authed={authed} />
-                <Route path="/register" component={RegisterUser} authed={authed} />
-                <Route path="/auth" component={Auth} authed={authed} />
-                <Route path="/browse-books" component={BrowseBooks} authed={authed} />
-                { authed ?
+                <PrivateRoute path='/home' component={Home} authed={authed} />
+                <PublicRoute path="/register" component={RegisterUser} authed={authed} />
+                <PublicRoute path="/auth" component={Auth} authed={authed} />
+                <PrivateRoute path="/browse-books" component={BrowseBooks} authed={authed} />
                 <Redirect from="*" to="/home" />
-                :
-                <Redirect from= "*" to="/register"/>
-                }
               </Switch>
               </div>
             </div>

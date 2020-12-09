@@ -22,6 +22,22 @@ namespace LibraryAtHome.Data
             return allLibraries.ToList();
         }
 
+        // GET LIBRARY WITH USER ID
+        public Library GetLibraryWithUserId(int userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select *
+                          from Library
+                          Where UserId = @user";
+
+            var parameters = new { user = userId };
+
+            var userLibrary = db.QueryFirstOrDefault<Library>(query, parameters);
+
+            return userLibrary;
+        }
+
         // CREATE A NEW LIBRARY
         public int CreateNewLibrary(int userId, string libraryName)
         {
