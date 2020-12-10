@@ -37,5 +37,26 @@ namespace LibraryAtHome.Data
 
             return libraryItems.ToList();
         }
+
+        // CREATE A NEW LIBRARY ITEM
+        public int CreateNewLibraryItem(int libraryId, int bookId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"INSERT INTO [dbo].[LibraryItem]
+                          ([LibraryId]
+                          ,[BookId]
+                          ,[onShelf])
+                      VALUES
+                          (@library
+                          ,@book
+                          ,1)";
+
+            var parameters = new { library = libraryId, book = bookId };
+
+            var libraryItemId = db.ExecuteScalar<int>(query, parameters);
+
+            return libraryItemId;
+        }
     }
 }
