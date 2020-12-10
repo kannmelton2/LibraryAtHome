@@ -12,7 +12,7 @@ class Home extends React.Component {
         library: {},
     }
 
-    getData = () => {
+    getUserAndLibrary = () => {
         const user = firebase.auth().currentUser;
         console.log('current user:', user.email);
         const userEmail = user.email;
@@ -25,14 +25,8 @@ class Home extends React.Component {
         })
     }
 
-    getLibrary = () => {
-        const userId = this.state.user.userId;
-        libraryData.getLibraryByUserId(userId)
-        .then((library) => this.setState({ library }))
-    }
-
     componentDidMount() {
-        this.getData();
+        this.getUserAndLibrary();
     }
 
     render() {
