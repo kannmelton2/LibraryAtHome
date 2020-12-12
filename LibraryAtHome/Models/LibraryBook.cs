@@ -12,5 +12,6 @@ namespace LibraryAtHome.Models
         public string Author { get; }
         public string CoverImage { get; }
         public int LibraryItemId { get; }
+        public bool OnShelf { get; set; }
     }
 }

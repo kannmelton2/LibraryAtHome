@@ -27,7 +27,7 @@ namespace LibraryAtHome.Data
         {
             using var db = new SqlConnection(_connectionString);
 
-            var query = @"select b.BookId, b.Title, b.Author, b.CoverImage, L.LibraryItemId
+            var query = @"select b.BookId, b.Title, b.Author, b.CoverImage, L.LibraryItemId, L.OnShelf
                           from LibraryItem L
                           join Book b
                           on L.BookId = b.BookId
