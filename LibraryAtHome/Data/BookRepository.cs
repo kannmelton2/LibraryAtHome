@@ -23,7 +23,7 @@ namespace LibraryAtHome.Data
         }
 
         // GET BOOKS BY LIBRARY ID
-        public List<Book> GetBooksWithLibraryId(int libraryId)
+        public List<LibraryBook> GetBooksWithLibraryId(int libraryId)
         {
             using var db = new SqlConnection(_connectionString);
 
@@ -36,7 +36,7 @@ namespace LibraryAtHome.Data
 
             var parameters = new { library = libraryId };
 
-            var librarysBooks = db.Query<Book>(query, parameters);
+            var librarysBooks = db.Query<LibraryBook>(query, parameters);
 
             return librarysBooks.ToList();
         } 
