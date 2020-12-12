@@ -4,6 +4,8 @@ import firebase from 'firebase';
 import userData from '../../../helpers/data/userData';
 import libraryData from '../../../helpers/data/libraryData';
 
+import SecondaryNav from '../../shared/SecondaryNav/SecondaryNav';
+
 import './Home.scss';
 
 class Home extends React.Component {
@@ -34,7 +36,19 @@ class Home extends React.Component {
 
         return(
             <div className="Home text-center">
+                <header>
                 <h1>{library.libraryName}</h1>
+                </header>
+                <main className="container">
+                    <div className="row">
+                        <div className=" col-3 secondary-nav">
+                            <SecondaryNav />
+                        </div>
+                        <div className="col-9 secondary-nav text-center">
+                            <p>The Library Books will be displayed here</p>
+                        </div>
+                    </div>
+                </main>
             </div>
         )
     }
