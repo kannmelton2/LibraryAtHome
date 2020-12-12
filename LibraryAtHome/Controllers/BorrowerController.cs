@@ -32,6 +32,7 @@ namespace LibraryAtHome.Controllers
             return Ok(borrowers);
         }
 
+        // POST METHODS
         [HttpPost]
         public IActionResult CreateBorrower(Borrower borrower)
         {
@@ -39,5 +40,6 @@ namespace LibraryAtHome.Controllers
 
             return Ok(borrowerId);
         }
+
     }
 }
