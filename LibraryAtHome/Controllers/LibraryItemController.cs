@@ -44,6 +44,18 @@ namespace LibraryAtHome.Controllers
             return Ok(libraryItems);
         }
 
+<<<<<<< HEAD
+=======
+        // POST METHODS
+
+        // Add a new library item (book) to the library
+        [HttpPost]
+        public IActionResult CreateLibraryItem(LibraryItem libraryItem)
+        {
+            var newLibraryItemId = _repo.CreateNewLibraryItem(libraryItem.LibraryId, libraryItem.BookId);
+
+            return Ok(newLibraryItemId);
+>>>>>>> main
         }
     }
 }
