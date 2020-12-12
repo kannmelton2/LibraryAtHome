@@ -3,7 +3,9 @@ import firebase from 'firebase';
 
 import userData from '../../../helpers/data/userData';
 import libraryData from '../../../helpers/data/libraryData';
+import libraryItemData from '../../../helpers/data/libraryItemData';
 
+import LibraryBookCards from '../../shared/LibraryBookCards/LibraryBookCards';
 import SecondaryNav from '../../shared/SecondaryNav/SecondaryNav';
 
 import './Home.scss';
@@ -12,27 +14,43 @@ class Home extends React.Component {
     state = {
         user: {},
         library: {},
+        libraryBooks: [],
     }
 
     getUserAndLibrary = () => {
         const user = firebase.auth().currentUser;
-        console.log('current user:', user.email);
         const userEmail = user.email;
         
         userData.getUserByEmail(userEmail)
         .then((user) => {
             this.setState({ user })
             libraryData.getLibraryByUserId(user.userId)
-            .then((library) => this.setState({ library }))
+            .then((library) => {
+                console.log('library:', library)
+                this.setState({ library })
+            })
+            .then(() => this.getMyLibraryBooks())
         })
+    }
+
+    getMyLibraryBooks = () => {
+        console.log('libraryId', this.state.library.libraryId);
+        libraryItemData.getLibraryBooks(this.state.library.libraryId)
+        .then((libraryBooks) => this.setState({ libraryBooks }))
+        .catch((err) => console.log('could not get library books', err));
     }
 
     componentDidMount() {
         this.getUserAndLibrary();
+        // this.getMyLibraryBooks();
     }
 
     render() {
-        const { library } = this.state;
+        const { library, libraryBooks } = this.state;
+
+        const buildLibraryBooks = libraryBooks.map((libraryBook) => (
+            <LibraryBookCards key={libraryBook.libraryItemId} libraryBook={libraryBook}/>
+          ));
 
         return(
             <div className="Home text-center">
@@ -47,8 +65,8 @@ class Home extends React.Component {
                             </header>
                             <SecondaryNav />
                         </div>
-                        <div className="col-9 secondary-nav text-center">
-                            <p>The Library Books will be displayed here</p>
+                        <div className="col-9 d-flex flex-wrap library-books text-center">
+                            {buildLibraryBooks}
                         </div>
                     </div>
                 </main>

@@ -32,5 +32,15 @@ namespace LibraryAtHome.Controllers
 
             return Ok(books);
         }
+
+        [HttpGet("{libraryId}")]
+        public IActionResult GetBooksByLibraryId(int libraryId)
+        {
+            var libraryBooks = _repo.GetBooksWithLibraryId(libraryId);
+
+            if (libraryBooks == null) return NotFound();
+
+            return Ok(libraryBooks);
+        }
     }
 }
