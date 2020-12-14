@@ -17,6 +17,7 @@ import AddBorrower from '../components/pages/AddBorrower/AddBorrower';
 import Auth from '../components/pages/Auth/Auth';
 import BrowseBooks from '../components/pages/BrowseBooks/BrowseBooks';
 import Home from '../components/pages/Home/Home';
+import LoanCart from '../components/pages/LoanCart/LoanCart';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import RegisterUser from '../components/pages/RegisterUser/RegisterUser';
 
@@ -67,8 +68,9 @@ class App extends React.Component {
                 <PrivateRoute path='/home' component={Home} authed={authed} />
                 <PublicRoute path="/register" component={RegisterUser} authed={authed} />
                 <PublicRoute path="/auth" component={Auth} authed={authed} />
-                <PrivateRoute path="/browse-books" component={BrowseBooks} authed={authed} />
-                <PrivateRoute path="/add-borrower" component={AddBorrower} authed={authed} />
+                <PrivateRoute path="/browse-books" component={BrowseBooks} authed={authed}/>
+                <PrivateRoute path="/add-borrower" component={AddBorrower} authed={authed}/>
+                <PrivateRoute path="/loan-cart" component={LoanCart} authed={authed}/>
                 <Redirect from="*" to="/home" />
               </Switch>
               </div>

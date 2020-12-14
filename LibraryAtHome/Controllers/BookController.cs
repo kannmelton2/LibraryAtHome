@@ -33,7 +33,8 @@ namespace LibraryAtHome.Controllers
             return Ok(books);
         }
 
-        [HttpGet("{libraryId}")]
+        // Get books using library Id
+        [HttpGet("library-{libraryId}")]
         public IActionResult GetBooksByLibraryId(int libraryId)
         {
             var libraryBooks = _repo.GetBooksWithLibraryId(libraryId);
@@ -41,6 +42,17 @@ namespace LibraryAtHome.Controllers
             if (libraryBooks == null) return NotFound();
 
             return Ok(libraryBooks);
+        }
+
+        // Get books using loan Id
+        [HttpGet("loan-{loanId}")]
+        public IActionResult GetBooksByLoanId(int loanId)
+        {
+            var loaningBooks = _repo.GetBooksWithLoanId(loanId);
+
+            if (loaningBooks == null) return NoContent();
+
+            return Ok(loaningBooks);
         }
     }
 }
