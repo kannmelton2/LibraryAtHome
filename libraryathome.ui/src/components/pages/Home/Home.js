@@ -26,7 +26,6 @@ class Home extends React.Component {
             this.setState({ user })
             libraryData.getLibraryByUserId(user.userId)
             .then((library) => {
-                console.log('library:', library)
                 this.setState({ library })
             })
             .then(() => this.getMyLibraryBooks())
@@ -34,7 +33,6 @@ class Home extends React.Component {
     }
 
     getMyLibraryBooks = () => {
-        console.log('libraryId', this.state.library.libraryId);
         libraryItemData.getLibraryBooks(this.state.library.libraryId)
         .then((libraryBooks) => this.setState({ libraryBooks }))
         .catch((err) => console.log('could not get library books', err));

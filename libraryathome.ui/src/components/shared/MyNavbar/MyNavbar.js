@@ -40,9 +40,15 @@ class MyNavbar extends React.Component {
             const { authed } = this.props;
             if (authed) {
               return (
+                  <React.Fragment>
                     <NavItem>
                         <NavLink tag={RRNavLink} to="/browse-books">Browse Books</NavLink>
                     </NavItem>
+                    <NavItem>
+                        <NavLink tag={RRNavLink} to="/loan-cart">Loan Cart</NavLink>
+                    </NavItem>
+                  </React.Fragment>
+
               );
             }
             return <Nav className="mr-auto" navbar></Nav>;

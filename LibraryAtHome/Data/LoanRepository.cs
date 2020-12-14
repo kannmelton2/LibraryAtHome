@@ -22,6 +22,22 @@ namespace LibraryAtHome.Data
             return allLoans.ToList();
         }
 
+        // GET incomplete LOAN WITH USERID
+        public Loan GetIncompleteLoanWithUserId(int userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"Select *
+                          from Loan
+                          Where UserId = @user AND isComplete = 0";
+
+            var parameters = new { user = userId };
+
+            var loan = db.QueryFirstOrDefault<Loan>(query, parameters);
+
+            return loan;
+        }
+
         // CREATE A NEW LOAN
         public int CreateNewLoan(int userId, int borrowerId)
         {

@@ -22,6 +22,24 @@ namespace LibraryAtHome.Data
             return allBorrowers.ToList();
         } 
 
+        // GET BORROWER BY LOAN ID
+        public Borrower GetBorrowerWithLoanId(int loanId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select *
+                          from loan l
+                          join borrower b
+                          on l.borrowerId = b.borrowerId
+                          where l.loanId = @loan";
+
+            var parameters = new { loan = loanId };
+
+            var loanBorrower = db.QueryFirstOrDefault<Borrower>(query, parameters);
+
+            return loanBorrower;
+        }
+
         // CREATE A NEW BORROWER
         public int CreateNewBorrower(string firstName, string lastName, string emailAddress, int userId)
         {

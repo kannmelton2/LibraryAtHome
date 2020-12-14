@@ -32,6 +32,16 @@ namespace LibraryAtHome.Controllers
             return Ok(loans);
         }
 
+        [HttpGet("{userId}")]
+        public IActionResult GetIncompleteLoanByUserId(int userId)
+        {
+            var loan = _repo.GetIncompleteLoanWithUserId(userId);
+
+            if (loan == null) return NoContent();
+
+            return Ok(loan);
+        }
+
         // HTTP POST METHODS
         [HttpPost]
         public IActionResult CreateLoan(Loan loan)

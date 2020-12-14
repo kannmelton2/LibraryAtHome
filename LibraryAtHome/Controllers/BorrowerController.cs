@@ -32,6 +32,16 @@ namespace LibraryAtHome.Controllers
             return Ok(borrowers);
         }
 
+        [HttpGet("{loanId}")]
+        public IActionResult GetBorrowerByLoanId(int loanId)
+        {
+            var borrower = _repo.GetBorrowerWithLoanId(loanId);
+
+            if (borrower == null) return NotFound("no borrowers associated with this loan id");
+
+            return Ok(borrower);
+        }
+
         // POST METHODS
         [HttpPost]
         public IActionResult CreateBorrower(Borrower borrower)
