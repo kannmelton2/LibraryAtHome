@@ -32,7 +32,8 @@ namespace LibraryAtHome.Controllers
             return Ok(borrowers);
         }
 
-        [HttpGet("{loanId}")]
+        // Get borrower using the loan Id
+        [HttpGet("loan-{loanId}")]
         public IActionResult GetBorrowerByLoanId(int loanId)
         {
             var borrower = _repo.GetBorrowerWithLoanId(loanId);
@@ -41,6 +42,18 @@ namespace LibraryAtHome.Controllers
 
             return Ok(borrower);
         }
+
+        // Get borrowers by userId
+        [HttpGet("user-{userId}")]
+        public IActionResult GetBorrowersByUserId(int userId)
+        {
+            var borrowers = _repo.GetBorrowersWithUserId(userId);
+
+            if (borrowers == null) return NoContent();
+
+            return Ok(borrowers);
+        }
+
 
         // POST METHODS
         [HttpPost]
