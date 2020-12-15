@@ -1,0 +1,14 @@
+.LoanBooks {
+    width: 100%;
+    text-align: left;
+    .card-title {
+        font-weight: 500;
+        font-size: 1.25rem;
+    }
+    .card-text {
+        font-size: 1.125rem;
+    }
+    .card-title, .card-text {
+        margin: 0;
+    }
+}

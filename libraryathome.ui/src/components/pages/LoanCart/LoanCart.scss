@@ -1,3 +1,26 @@
 .LoanCart {
-    display: block;
+    width: 100%;
+    .loan-books {
+        header {
+            p {
+                font-weight: 500;
+                font-size: 1.25rem;
+            }
+        }
+        width: 100%;
+        text-align: left;
+    }
+    .loan-borrower {
+        width: 100%;
+        height: 3rem;
+        text-align: left;
+        font-size: 1.25rem;
+        font-weight: 500;
+        p {
+            padding: .5rem;
+            padding-top: .25rem;
+            margin: 0;
+
+        }
+    }
 }
