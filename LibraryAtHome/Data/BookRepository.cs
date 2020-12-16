@@ -41,6 +41,25 @@ namespace LibraryAtHome.Data
             return librarysBooks.ToList();
         } 
 
+        // Get books on shelf using library Id
+        public List<LibraryBook> GetBooksOnShelfWithLibraryId(int libraryId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select b.BookId, b.Title, b.Author, b.CoverImage, L.LibraryItemId, L.OnShelf
+                          from LibraryItem L
+                          join Book b
+                          on L.BookId = b.BookId
+                          Where L.LibraryId = @library AND OnShelf = 1
+                          Order by b.Title";
+
+            var parameters = new { library = libraryId };
+
+            var librarysBooks = db.Query<LibraryBook>(query, parameters);
+
+            return librarysBooks.ToList();
+        }
+
         // GET BOOKS WITH LOAN ID 
         public List<LibraryBook> GetBooksWithLoanId(int loanId)
         {

@@ -44,6 +44,17 @@ namespace LibraryAtHome.Controllers
             return Ok(libraryBooks);
         }
 
+        // Get books onShelf using libraryId
+        [HttpGet("onShelf-{libraryId}")]
+        public IActionResult GetBooksOnShelfByLibraryId(int libraryId)
+        {
+            var libraryBooks = _repo.GetBooksOnShelfWithLibraryId(libraryId);
+
+            if (libraryBooks == null) return NotFound();
+
+            return Ok(libraryBooks);
+        }
+
         // Get books using loan Id
         [HttpGet("loan-{loanId}")]
         public IActionResult GetBooksByLoanId(int loanId)
