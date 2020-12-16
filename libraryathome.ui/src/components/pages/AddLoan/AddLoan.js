@@ -89,6 +89,23 @@ class AddLoan extends React.Component {
         this.setState({ loanBookId: e.target.value });
       }
 
+      createLoan = () => {
+        const {
+            user,
+            loanBorrowerId,
+            loanBookId,
+            } = this.state;
+        const newLoan = {
+            userId: user.userId,
+            borrowerId: loanBorrowerId *1,
+            libraryItemId: loanBookId *1,
+        }
+
+        loanData.addNewLoan(newLoan)
+        .then(() => this.getUserAndLibrary())
+        .catch((err) => console.log('could not create loan', err))
+      }
+
     render() {
         const {
             loanBorrower,
@@ -128,14 +145,21 @@ class AddLoan extends React.Component {
                     <div className="form-group">
                         <label htmlFor="loan-books">What book would you like to loan?</label>
                         <br />
-                        <select id="loan-boooks" value={loanBookId} onChange={this.loanBookChange}>
+                        <select id="loan-books" value={loanBookId} onChange={this.loanBookChange}>
                             <option>Select Book</option>
                             {bookOptions}
                         </select>
                     </div>
                 </form>
-                <button className="btn btn-primary">Add Another Book</button>
-                <Link className="btn btn-info" to="/loan-cart">View Loan</Link>
+                {
+                    loan ?
+                    <div>
+                    <button className="btn btn-primary" onClick={this.adddToLoan}>Add Another Book</button> 
+                    <Link className="btn btn-info" to="/loan-cart">View Loan</Link>
+                    </div>
+                    :
+                    <button className="btn btn-primary" onClick={this.createLoan}>Add Book</button>
+                }
             </div>
         )
     }
