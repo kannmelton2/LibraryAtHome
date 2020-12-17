@@ -7,4 +7,6 @@ const getCurrentLoan = (userId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err))
 });
 
-export default { getCurrentLoan };
+const addNewLoan = (newLoan) => axios.post(`${baseUrl}/loan`, newLoan);
+
+export default { getCurrentLoan, addNewLoan };

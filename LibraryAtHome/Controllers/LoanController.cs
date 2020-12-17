@@ -15,11 +15,13 @@ namespace LibraryAtHome.Controllers
     {
         // field for repository
         readonly LoanRepository _repo;
+        readonly LoanItemRepository _loanItemRepo;
 
         // constructor
         public LoanController()
         {
             _repo = new LoanRepository();
+            _loanItemRepo = new LoanItemRepository();
         }
 
         // HTTP GET METHODS
@@ -44,9 +46,11 @@ namespace LibraryAtHome.Controllers
 
         // HTTP POST METHODS
         [HttpPost]
-        public IActionResult CreateLoan(Loan loan)
+        public IActionResult CreateLoan(LoanLoanItem loanLoanItem)
         {
-            var loanId = _repo.CreateNewLoan(loan.UserId, loan.BorrowerId);
+            var loanId = _repo.CreateNewLoan(loanLoanItem.UserId, loanLoanItem.BorrowerId);
+
+            _loanItemRepo.CreateNewLoanItem(loanId, loanLoanItem.LibraryItemId);
 
             return Ok(loanId);
         }

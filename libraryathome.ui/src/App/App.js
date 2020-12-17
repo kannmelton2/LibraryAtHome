@@ -14,6 +14,7 @@ import './App.scss';
 import fbConnection from '../helpers/data/connection';
 
 import AddBorrower from '../components/pages/AddBorrower/AddBorrower';
+import AddLoan from '../components/pages/AddLoan/AddLoan';
 import Auth from '../components/pages/Auth/Auth';
 import BrowseBooks from '../components/pages/BrowseBooks/BrowseBooks';
 import Home from '../components/pages/Home/Home';
@@ -70,6 +71,7 @@ class App extends React.Component {
                 <PublicRoute path="/auth" component={Auth} authed={authed} />
                 <PrivateRoute path="/browse-books" component={BrowseBooks} authed={authed}/>
                 <PrivateRoute path="/add-borrower" component={AddBorrower} authed={authed}/>
+                <PrivateRoute path="/add-loan" component={AddLoan} authed={authed} />
                 <PrivateRoute path="/loan-cart" component={LoanCart} authed={authed}/>
                 <Redirect from="*" to="/home" />
               </Switch>

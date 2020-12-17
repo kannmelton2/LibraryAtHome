@@ -9,10 +9,21 @@ const getLibraryBooks = (libraryId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const getOnShelfLibraryBooks = (libraryId) => new Promise((resolve, reject) => {
+    axios.get(`${baseUrl}/book/onShelf-${libraryId}`)
+    .then((response) => resolve(response.data))
+    .catch((err) => reject(err));
+});
+
 const getLoanBooks = (loanId) => new Promise((resolve, reject) => {
     axios.get(`${baseUrl}/book/loan-${loanId}`)
     .then((response) => resolve(response.data))
     .catch((err) => reject(err));
 })
 
-export default { addBookToLibrary, getLibraryBooks, getLoanBooks };
+export default {
+    addBookToLibrary,
+    getLibraryBooks,
+    getOnShelfLibraryBooks,
+    getLoanBooks
+};

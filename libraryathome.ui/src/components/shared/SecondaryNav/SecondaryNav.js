@@ -12,7 +12,7 @@ class SecondaryNav extends React.Component {
                     <NavLink tag={RRNavLink} to="/add-borrower">Add A Borrower</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={RRNavLink} to="/">Create A Loan</NavLink>
+                    <NavLink tag={RRNavLink} to="/add-loan">Create A Loan</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink tag={RRNavLink} to="/">Due Soon</NavLink>
