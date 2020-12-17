@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LibraryAtHome.Data;
+using LibraryAtHome.Models;
 
 namespace LibraryAtHome.Controllers
 {
@@ -41,6 +42,15 @@ namespace LibraryAtHome.Controllers
             if (loanItems == null) return NotFound("No Loan with that Id");
 
             return Ok(loanItems);
+        }
+
+        // POST METHODS
+        [HttpPost]
+        public IActionResult CreateLoanItem(LoanItem loanItem)
+        {
+            var newLoanItemId = _repo.CreateNewLoanItem(loanItem.LoanId, loanItem.LibraryItemId);
+
+            return Ok(newLoanItemId);
         }
 
     }

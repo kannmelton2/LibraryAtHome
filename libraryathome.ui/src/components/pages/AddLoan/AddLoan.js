@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import borrowerData from '../../../helpers/data/borrowerData';
 import libraryData from '../../../helpers/data/libraryData';
 import loanData from '../../../helpers/data/loanData';
+import loanItemData from '../../../helpers/data/loanItemData';
 import userData from '../../../helpers/data/userData';
 
 import './AddLoan.scss';
@@ -106,6 +107,18 @@ class AddLoan extends React.Component {
         .catch((err) => console.log('could not create loan', err))
       }
 
+      addToLoan = () => {
+          const { loan, loanBookId } = this.state;
+          const newLoanItem = {
+              loanId: loan.loanId,
+              libraryItemId: loanBookId *1,
+          }
+
+          loanItemData.addLoanItem(newLoanItem)
+          .then(() => this.getUserAndLibrary())
+          .catch((err) => console.log('could not create loan item', err))
+      }
+
     render() {
         const {
             loanBorrower,
@@ -153,10 +166,7 @@ class AddLoan extends React.Component {
                 </form>
                 {
                     loan ?
-                    <div>
-                    <button className="btn btn-primary" onClick={this.adddToLoan}>Add Another Book</button> 
-                    <Link className="btn btn-info" to="/loan-cart">View Loan</Link>
-                    </div>
+                    <button className="btn btn-primary" onClick={this.addToLoan}>Add Another Book</button> 
                     :
                     <button className="btn btn-primary" onClick={this.createLoan}>Add Book</button>
                 }
