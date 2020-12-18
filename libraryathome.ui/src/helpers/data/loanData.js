@@ -7,6 +7,19 @@ const getCurrentLoan = (userId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err))
 });
 
+const getLoanByLoanId = (loanId) => new Promise((resolve, reject) => {
+    axios.get(`${baseUrl}/loan/get-${loanId}`)
+    .then((response) => resolve(response.data))
+    .catch((err) => reject(err))
+});
+
 const addNewLoan = (newLoan) => axios.post(`${baseUrl}/loan`, newLoan);
 
-export default { getCurrentLoan, addNewLoan };
+const updateLoan = (loanId) => axios.put(`${baseUrl}/loan/put-${loanId}`);
+
+export default {
+    getCurrentLoan,
+    getLoanByLoanId,
+    addNewLoan,
+    updateLoan,
+ };
