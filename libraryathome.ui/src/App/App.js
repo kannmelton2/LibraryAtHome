@@ -17,6 +17,7 @@ import AddBorrower from '../components/pages/AddBorrower/AddBorrower';
 import AddLoan from '../components/pages/AddLoan/AddLoan';
 import Auth from '../components/pages/Auth/Auth';
 import BrowseBooks from '../components/pages/BrowseBooks/BrowseBooks';
+import DueSoon from '../components/pages/DueSoon/DueSoon';
 import Home from '../components/pages/Home/Home';
 import LoanCart from '../components/pages/LoanCart/LoanCart';
 import LoanConfirmation from '../components/pages/LoanConfirmation/LoanConfirmation';
@@ -77,6 +78,7 @@ class App extends React.Component {
                 <PrivateRoute path='/loan-cart' component={LoanCart} authed={authed}/>
                 <PrivateRoute path='/loan-confirmation/:loanId' component={LoanConfirmation} authed={authed} />
                 <PrivateRoute path='/view-loans' component={ViewLoans} authed={authed} />
+                <PrivateRoute path='/due-soon' component={DueSoon} authed={authed} />
                 <Redirect from='*' to='/home' />
               </Switch>
               </div>
