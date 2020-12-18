@@ -7,7 +7,7 @@ const loanShape = PropTypes.shape({
   loanDate: PropTypes.string.isRequired,
   dueDate: PropTypes.string.isRequired,
   isComplete: PropTypes.bool.isRequired,
-  Returned: PropTypes.bool.isRequired,
+  Returned: PropTypes.bool,
 });
 
 export default { loanShape };

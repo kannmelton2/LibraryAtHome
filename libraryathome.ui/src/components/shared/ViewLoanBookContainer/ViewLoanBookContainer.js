@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import loanShape from '../../../helpers/propz/loanShape';
 
+import borrowerData from '../../../helpers/data/borrowerData';
 import loanData from '../../../helpers/data/loanData';
 import libraryItemData from '../../../helpers/data/libraryItemData';
 
@@ -17,22 +18,22 @@ class ViewLoanBookContainer extends React.Component {
 
     state = {
         books: [],
+        borrower: {},
     }
 
     componentDidMount() {
         const loanId = this.props.loan.loanId;
 
-        loanData.getLoanByLoanId(loanId)
-        .then((loan) => {
-            this.setState({ loan })
-            libraryItemData.getLoanBooks(loan.loanId)
-            .then((books) => this.setState({ books }))
-        })
+        borrowerData.getBorrowerByLoan(loanId)
+        .then((borrower) => this.setState({ borrower }));
+
+        libraryItemData.getLoanBooks(loanId)
+        .then((books) => this.setState({ books }));
     }
 
     render() {
        const { loan } = this.props;
-       const { books } = this.state;
+       const { books, borrower } = this.state;
 
        const buildLoanBooks = books.map((book) => (
         <LoanBooks key={book.libraryItemId} book={book} isComplete={loan.isComplete}/>
@@ -42,6 +43,12 @@ class ViewLoanBookContainer extends React.Component {
             <div className="ViewLoanBookContainer">
                 <p>{moment(loan.dueDate).format('L')}</p>
                 {buildLoanBooks}
+                <div className="loan-borrower">
+                    <header>
+                        <p>You are loaning the above books to:</p>
+                    </header>
+                        <p className="card">{borrower.firstName} {borrower.lastName}</p>
+                </div>
             </div>
         )
     }
