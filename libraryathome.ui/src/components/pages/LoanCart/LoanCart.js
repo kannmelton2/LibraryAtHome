@@ -57,6 +57,13 @@ class LoanCart extends React.Component {
         .catch((err) => console.log('could not update loan', err));
     }
 
+    cancelLoan = (e) => {
+        e.preventDefault();
+        const loanId = this.state.loan.loanId;
+        loanData.deleteLoan(loanId).then(() => this.props.history.push('/home'))
+        .catch((err) => console.log(' could not delete loan', err))
+    }
+
     componentDidMount() {
         this.getUser();
     }
@@ -94,6 +101,7 @@ class LoanCart extends React.Component {
                                 </header>
                                 <p className="card">{borrower.firstName} {borrower.lastName}</p>
                             </div>
+                                <button className="btn btn-danger m-5" onClick={this.cancelLoan}>Cancel Loan</button>
                                 <button className="btn btn-primary m-5" onClick={this.finishLoan}>Complete Loan</button>
                         </div>
                     </div>

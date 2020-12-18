@@ -99,5 +99,21 @@ namespace LibraryAtHome.Data
 
             return completeLoan;
         }
+
+        // Delete a loan and the loan items associated with it
+        public void DeleteLoanWithLoanItems(int loanId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"Delete from LoanItem
+                          Where LoanId = @loan
+
+                          Delete from Loan
+                          Where LoanId = @loan";
+
+            var parameters = new { loan = loanId };
+
+            db.Execute(query, parameters);
+        }
     }
 }

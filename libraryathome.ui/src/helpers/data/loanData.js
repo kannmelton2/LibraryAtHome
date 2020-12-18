@@ -17,9 +17,12 @@ const addNewLoan = (newLoan) => axios.post(`${baseUrl}/loan`, newLoan);
 
 const updateLoan = (loanId) => axios.put(`${baseUrl}/loan/put-${loanId}`);
 
+const deleteLoan = (loanId) => axios.delete(`${baseUrl}/loan/del-${loanId}`);
+
 export default {
     getCurrentLoan,
     getLoanByLoanId,
     addNewLoan,
     updateLoan,
+    deleteLoan,
  };
