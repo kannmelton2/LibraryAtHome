@@ -25,5 +25,5 @@ export default {
     addBookToLibrary,
     getLibraryBooks,
     getOnShelfLibraryBooks,
-    getLoanBooks
+    getLoanBooks,
 };

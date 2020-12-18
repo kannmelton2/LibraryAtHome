@@ -25,7 +25,7 @@ namespace LibraryAtHome.Controllers
         }
 
         // HTTP GET METHODS
-        
+
         [HttpGet]
         public IActionResult GetAllLoans()
         {
@@ -44,6 +44,17 @@ namespace LibraryAtHome.Controllers
             return Ok(loan);
         }
 
+        // Get loan with loan Id
+        [HttpGet("get-{loanId}")]
+        public IActionResult GetLoanByLoanId(int loanId)
+        {
+            var loan = _repo.GetLoanWithLoanId(loanId);
+
+            if (loan == null) return NoContent();
+
+            return Ok(loan);
+        }
+
         // HTTP POST METHODS
         [HttpPost]
         public IActionResult CreateLoan(LoanLoanItem loanLoanItem)
@@ -53,6 +64,16 @@ namespace LibraryAtHome.Controllers
             _loanItemRepo.CreateNewLoanItem(loanId, loanLoanItem.LibraryItemId);
 
             return Ok(loanId);
+        }
+
+        // HTTP PUT METHODS
+
+        [HttpPut("put-{loanId}")]
+        public IActionResult CompleteLoan(int loanId)
+        {
+            var completedLoan = _repo.CompleteALoan(loanId);
+
+            return Ok(completedLoan);
         }
     }
 }

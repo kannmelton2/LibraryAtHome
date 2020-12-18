@@ -38,6 +38,22 @@ namespace LibraryAtHome.Data
             return loan;
         }
 
+        // Get loan with LoanId
+        public Loan GetLoanWithLoanId(int loanId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select *
+                          from Loan
+                          Where LoanId = @loan";
+
+            var parameters = new { loan = loanId };
+
+            var loan = db.QueryFirstOrDefault<Loan>(query, parameters);
+
+            return loan;
+        }
+
         // CREATE A NEW LOAN
         public int CreateNewLoan(int userId, int borrowerId)
         {
@@ -64,6 +80,24 @@ namespace LibraryAtHome.Data
             var newLoanId = db.QuerySingle<int>(query, parameters);
 
             return newLoanId;
+        }
+
+        // Complete a loan, is triggered when Complete button on loan cart page is pressed
+        public Loan CompleteALoan(int loanId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"UPDATE [dbo].[Loan]
+                          SET [LoanDate] = getDate()
+	                     ,[DueDate] = DATEADD(day, 21, getDate())
+                         ,[isComplete] = 1
+                          WHERE LoanId = @loan";
+
+            var parameters = new { loan = loanId };
+
+            var completeLoan = db.QueryFirstOrDefault<Loan>(query, parameters);
+
+            return completeLoan;
         }
     }
 }

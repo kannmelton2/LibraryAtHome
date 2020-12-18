@@ -20,7 +20,7 @@ class LoanCart extends React.Component {
     }
 
     getCartInfo = () => {
-        const { user, loan } = this.state;
+        const { user } = this.state;
         loanData.getCurrentLoan(user.userId)
         .then((loan) => {
             this.setState({ loan })
@@ -29,7 +29,7 @@ class LoanCart extends React.Component {
             libraryItemData.getLoanBooks(loan.loanId)
             .then((books) => this.setState({ books }))
         })
-        .catch((err) => console.log('could not get loan information', err))
+        .catch((err) => console.log('could not get loan information', err));
     }
 
     getUser = () => {
@@ -38,7 +38,15 @@ class LoanCart extends React.Component {
         
         userData.getUserByEmail(userEmail)
         .then((user) => this.setState({ user }))
-        .then(() => this.getCartInfo())
+        .then(() => this.getCartInfo());
+    }
+
+    finishLoan = (e) => {
+        e.preventDefault();
+        const loanId = this.state.loan.loanId;
+        loanData.updateLoan(loanId)
+        .then(() => this.props.history.push(`/loan-confirmation/${loanId}`))
+        .catch((err) => console.log('could not update loan', err));
     }
 
     componentDidMount() {
@@ -78,6 +86,7 @@ class LoanCart extends React.Component {
                                 </header>
                                 <p className="card">{borrower.firstName} {borrower.lastName}</p>
                             </div>
+                                <button className="btn btn-primary m-5" onClick={this.finishLoan}>Complete Loan</button>
                         </div>
                     </div>
                 </section>
