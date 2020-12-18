@@ -54,6 +54,17 @@ namespace LibraryAtHome.Controllers
             return Ok(loans);
         }
 
+        // get loans that are due soon (within next 7 days)
+        [HttpGet("due-soon-{userId}")]
+        public IActionResult GetDueSoonLoansByUserId(int userId)
+        {
+            var loans = _repo.GetDueSoonLoansWithUserId(userId);
+
+            if (loans == null) return NoContent();
+
+            return Ok(loans);
+        }
+
         // Get loan with loan Id
         [HttpGet("get-{loanId}")]
         public IActionResult GetLoanByLoanId(int loanId)

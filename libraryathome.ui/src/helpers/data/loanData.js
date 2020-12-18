@@ -13,6 +13,12 @@ const getLoansByUser = (userId) => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
+const getDueSoonLoans = (userId) => new Promise((resolve, reject) => {
+    axios.get(`${baseUrl}/loan/due-soon-${userId}`)
+    .then((response) => resolve(response.data))
+    .catch((err) => reject(err));
+});
+
 const getLoanByLoanId = (loanId) => new Promise((resolve, reject) => {
     axios.get(`${baseUrl}/loan/get-${loanId}`)
     .then((response) => resolve(response.data))
@@ -29,6 +35,7 @@ export default {
     getCurrentLoan,
     getLoansByUser,
     getLoanByLoanId,
+    getDueSoonLoans,
     addNewLoan,
     updateLoan,
     deleteLoan,

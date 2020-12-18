@@ -70,6 +70,22 @@ namespace LibraryAtHome.Data
             return completeLoans.ToList();
         }
 
+        public List<Loan> GetDueSoonLoansWithUserId(int userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select *
+                          from Loan
+                          Where DueDate between getDate() and DATEADD(day, 7, getDate())
+                          AND UserId = @user";
+
+            var parameters = new { user = userId };
+
+            var completeLoans = db.Query<Loan>(query, parameters);
+
+            return completeLoans.ToList();
+        }
+
         // CREATE A NEW LOAN
         public int CreateNewLoan(int userId, int borrowerId)
         {
