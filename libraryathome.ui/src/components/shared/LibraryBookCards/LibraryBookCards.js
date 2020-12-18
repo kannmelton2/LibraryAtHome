@@ -5,7 +5,7 @@ import libraryBookShape from '../../../helpers/propz/libraryBookShape';
 import './LibraryBookCards.scss';
 
 class LibraryBookCards extends React.Component {
-    static props = {
+    static propTypes = {
         libraryBook: libraryBookShape.libraryBookShape,
     }
 

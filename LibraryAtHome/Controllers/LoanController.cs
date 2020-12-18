@@ -44,6 +44,16 @@ namespace LibraryAtHome.Controllers
             return Ok(loan);
         }
 
+        [HttpGet("view-all-{userId}")]
+        public IActionResult GetLoansByUserId(int userId)
+        {
+            var loans = _repo.GetLoansWithUserId(userId);
+
+            if (loans == null) return NoContent();
+
+            return Ok(loans);
+        }
+
         // Get loan with loan Id
         [HttpGet("get-{loanId}")]
         public IActionResult GetLoanByLoanId(int loanId)

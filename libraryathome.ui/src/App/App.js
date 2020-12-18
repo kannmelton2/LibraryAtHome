@@ -22,6 +22,7 @@ import LoanCart from '../components/pages/LoanCart/LoanCart';
 import LoanConfirmation from '../components/pages/LoanConfirmation/LoanConfirmation';
 import MyNavbar from '../components/shared/MyNavbar/MyNavbar';
 import RegisterUser from '../components/pages/RegisterUser/RegisterUser';
+import ViewLoans from '../components/pages/ViewLoans/ViewLoans';
 
 fbConnection();
 
@@ -68,14 +69,15 @@ class App extends React.Component {
               <div className="row">
               <Switch>
                 <PrivateRoute path='/home' component={Home} authed={authed} />
-                <PublicRoute path="/register" component={RegisterUser} authed={authed} />
-                <PublicRoute path="/auth" component={Auth} authed={authed} />
-                <PrivateRoute path="/browse-books" component={BrowseBooks} authed={authed}/>
-                <PrivateRoute path="/add-borrower" component={AddBorrower} authed={authed}/>
-                <PrivateRoute path="/add-loan" component={AddLoan} authed={authed} />
-                <PrivateRoute path="/loan-cart" component={LoanCart} authed={authed}/>
-                <PrivateRoute path="/loan-confirmation/:loanId" component={LoanConfirmation} authed={authed} />
-                <Redirect from="*" to="/home" />
+                <PublicRoute path='/register' component={RegisterUser} authed={authed} />
+                <PublicRoute path='/auth' component={Auth} authed={authed} />
+                <PrivateRoute path='/browse-books' component={BrowseBooks} authed={authed}/>
+                <PrivateRoute path='/add-borrower' component={AddBorrower} authed={authed}/>
+                <PrivateRoute path='/add-loan' component={AddLoan} authed={authed} />
+                <PrivateRoute path='/loan-cart' component={LoanCart} authed={authed}/>
+                <PrivateRoute path='/loan-confirmation/:loanId' component={LoanConfirmation} authed={authed} />
+                <PrivateRoute path='/view-loans' component={ViewLoans} authed={authed} />
+                <Redirect from='*' to='/home' />
               </Switch>
               </div>
             </div>

@@ -4,7 +4,13 @@ import { baseUrl } from './constants.json';
 const getCurrentLoan = (userId) => new Promise((resolve, reject) => {
     axios.get(`${baseUrl}/loan/${userId}`)
     .then((response) => resolve(response.data))
-    .catch((err) => reject(err))
+    .catch((err) => reject(err));
+});
+
+const getLoansByUser = (userId) => new Promise((resolve, reject) => {
+    axios.get(`${baseUrl}/loan/view-all-${userId}`)
+    .then((response) => resolve(response.data))
+    .catch((err) => reject(err));
 });
 
 const getLoanByLoanId = (loanId) => new Promise((resolve, reject) => {
@@ -21,6 +27,7 @@ const deleteLoan = (loanId) => axios.delete(`${baseUrl}/loan/del-${loanId}`);
 
 export default {
     getCurrentLoan,
+    getLoansByUser,
     getLoanByLoanId,
     addNewLoan,
     updateLoan,
