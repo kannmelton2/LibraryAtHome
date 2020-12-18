@@ -54,6 +54,22 @@ namespace LibraryAtHome.Data
             return loan;
         }
 
+        // Get completed loans with userId
+        public List<Loan> GetLoansWithUserId(int userId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select *
+                          from Loan
+                          Where UserId = @user AND isComplete = 1 AND Returned = 0";
+
+            var parameters = new { user = userId };
+
+            var completeLoans = db.Query<Loan>(query, parameters);
+
+            return completeLoans.ToList();
+        }
+
         // CREATE A NEW LOAN
         public int CreateNewLoan(int userId, int borrowerId)
         {

@@ -18,7 +18,7 @@ class SecondaryNav extends React.Component {
                     <NavLink tag={RRNavLink} to="/">Due Soon</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={RRNavLink} to="/">See All Loans</NavLink>
+                    <NavLink tag={RRNavLink} to="/view-loans">See All Loans</NavLink>
                 </NavItem>
             </Nav>
         )

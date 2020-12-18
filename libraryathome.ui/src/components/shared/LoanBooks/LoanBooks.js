@@ -6,7 +6,7 @@ import libraryBookShape from '../../../helpers/propz/libraryBookShape';
 import './LoanBooks.scss';
 
 class LoanBooks extends React.Component {
-    static props = {
+    static propTypes = {
         isComplete: PropTypes.bool.isRequired,
         deleteLoanBook: PropTypes.func,
         book: libraryBookShape.libraryBookShape,
