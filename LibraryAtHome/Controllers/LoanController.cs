@@ -75,5 +75,19 @@ namespace LibraryAtHome.Controllers
 
             return Ok(completedLoan);
         }
+
+        // HTTP DELETE METHODS
+        [HttpDelete("del-{loanId}")]
+        public IActionResult DeleteLoanAndLoanItems(int loanId)
+        {
+            if (_repo.GetLoanWithLoanId(loanId) == null)
+            {
+                return NotFound("No loan found with that id");
+            }
+
+            _repo.DeleteLoanWithLoanItems(loanId);
+
+            return Ok();
+        }
     }
 }
