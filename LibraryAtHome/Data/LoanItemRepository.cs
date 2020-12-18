@@ -38,6 +38,22 @@ namespace LibraryAtHome.Data
             return loanItems.ToList();
         }
 
+        // Get By LoanId and LibraryItemId
+        public LoanItem GetByLoanAndLibraryItem(int loanId, int libraryItemId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"select * 
+                          from LoanItem
+                          Where LoanId = @loan AND LibraryItemId = @libraryItem";
+
+            var parameters = new { loan = loanId, libraryItem = libraryItemId };
+
+            var loanItem = db.QueryFirstOrDefault<LoanItem>(query, parameters);
+
+            return loanItem;
+        }
+
         // Create a new loan item
         public int CreateNewLoanItem(int loanId, int libraryItemId)
         {
@@ -58,6 +74,19 @@ namespace LibraryAtHome.Data
             var loanItemId = db.QuerySingle<int>(query, parameters);
 
             return loanItemId;
+        }
+
+        // Delete a loan item
+        public void DeleteLoanItem(int loanId, int libraryItemId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            var query = @"Delete from LoanItem
+                        Where LoanId = @loan AND LibraryItemId = @libraryItem";
+
+            var parameters = new { loan = loanId, libraryItem = libraryItemId };
+
+            db.Execute(query, parameters);
         }
     }
 }

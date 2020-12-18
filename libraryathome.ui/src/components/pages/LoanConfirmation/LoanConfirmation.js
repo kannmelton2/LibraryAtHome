@@ -24,10 +24,10 @@ class LoanConfirmation extends React.Component {
         })
     }
     render() {
-        const { books } = this.state;
+        const { books, loan } = this.state;
 
         const buildLoanBooks = books.map((book) => (
-            <LoanBooks key={book.libraryItemId} book={book} />
+            <LoanBooks key={book.libraryItemId} book={book} isComplete={loan.isComplete} />
         ));
 
         return(

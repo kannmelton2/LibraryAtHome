@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import borrowerData from '../../../helpers/data/borrowerData';
 import libraryItemData from '../../../helpers/data/libraryItemData';
 import loanData from '../../../helpers/data/loanData';
+import loanItemData from '../../../helpers/data/loanItemData';
 import userData from '../../../helpers/data/userData';
 
 import LoanBooks from '../../shared/LoanBooks/LoanBooks';
@@ -41,6 +42,13 @@ class LoanCart extends React.Component {
         .then(() => this.getCartInfo());
     }
 
+    deleteLoanBook = (libraryItemId) => {
+    const loanId = this.state.loan.loanId;
+    loanItemData.deleteFromCart(loanId, libraryItemId)
+    .then(() => this.getCartInfo())
+    .catch((err) => console.log('could not delete', err));
+    }
+
     finishLoan = (e) => {
         e.preventDefault();
         const loanId = this.state.loan.loanId;
@@ -54,10 +62,10 @@ class LoanCart extends React.Component {
     }
 
     render() {
-        const { books, borrower } = this.state;
+        const { books, borrower, loan } = this.state;
 
         const buildLoanBooks = books.map((book) => (
-            <LoanBooks key={book.libraryItemId} book={book} />
+            <LoanBooks key={book.libraryItemId} book={book} deleteLoanBook={this.deleteLoanBook} isComplete={loan.isComplete}/>
         ));
 
         return(
