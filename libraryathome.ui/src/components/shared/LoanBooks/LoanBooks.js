@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import libraryBookShape from '../../../helpers/propz/libraryBookShape';
 
@@ -6,10 +7,13 @@ import './LoanBooks.scss';
 
 class LoanBooks extends React.Component {
     static props = {
+        isComplete: PropTypes.bool.isRequired,
+        deleteLoanBook: PropTypes.func,
         book: libraryBookShape.libraryBookShape,
     }
+
     render() {
-        const { book } = this.props;
+        const { book, isComplete, deleteLoanBook } = this.props;
 
         return(
             <main className="LoanBooks">
@@ -17,6 +21,10 @@ class LoanBooks extends React.Component {
                     <div className="card-body">
                     <p className="card-title">{book.title}</p>
                     <p className="card-text">by: {book.author}</p>
+                    { isComplete ?
+                    '' :
+                    <button className="btn btn-dark" onClick={() => deleteLoanBook(book.libraryItemId)}>X</button>
+                    }
                     </div>
                     
                 </div>

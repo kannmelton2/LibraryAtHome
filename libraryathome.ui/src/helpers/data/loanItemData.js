@@ -3,4 +3,6 @@ import { baseUrl } from './constants.json';
 
 const addLoanItem = (newLoanItem) => axios.post(`${baseUrl}/loanItem`, newLoanItem);
 
-export default { addLoanItem };
+const deleteFromCart = (loanId, libraryItemId) => axios.delete(`${baseUrl}/loanItem/${loanId}-${libraryItemId}`);
+
+export default { addLoanItem, deleteFromCart };
