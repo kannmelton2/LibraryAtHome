@@ -125,9 +125,27 @@ namespace LibraryAtHome.Data
                          ,[isComplete] = 1
                           WHERE LoanId = @loan";
 
+            var queryTwo = @"Select *
+                             From LoanItem
+                             Where LoanId = @loan"; // get listLoanItems to isolate libraryItemId
+
             var parameters = new { loan = loanId };
 
             var completeLoan = db.QueryFirstOrDefault<Loan>(query, parameters);
+            var loanItems = db.Query<LoanItem>(queryTwo, parameters);
+
+            foreach (LoanItem loanItem in loanItems) {
+                // sql query to update the LibraryItem table based on the LibraryItemId
+                var queryThree = @"UPDATE [dbo].[LibraryItem]
+                               SET [onShelf] = 0
+                               WHERE LibraryItemId = @libraryItem";
+
+                // parameters for above sql query, grabbing the loanItem's LibraryItemId
+                var parametersThree = new { libraryItem = loanItem.LibraryItemId };
+
+                // another query to update
+                db.Execute(queryThree, parametersThree);
+            }
 
             return completeLoan;
         }

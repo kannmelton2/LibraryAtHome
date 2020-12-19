@@ -18,7 +18,12 @@ class LibraryBookCards extends React.Component {
                     <div className="card-body">
                         <h5 className="card-title">{libraryBook.title}</h5>
                         <p className="card-text">by {libraryBook.author}</p>
-                        <button className="btn btn-primary">Return to library</button>
+                        {
+                            libraryBook.onShelf ?
+                            ''
+                            :
+                            <button className="btn btn-primary">Return to library</button>
+                        }
                     </div>
                 </div>
             </section>

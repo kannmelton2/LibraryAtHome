@@ -8,6 +8,7 @@ class SecondaryNav extends React.Component {
     render() {
         return(
             <Nav className="SecondaryNav">
+                
                 <NavItem>
                     <NavLink tag={RRNavLink} to="/add-borrower">Add A Borrower</NavLink>
                 </NavItem>

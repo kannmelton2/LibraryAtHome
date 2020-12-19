@@ -4,6 +4,8 @@ import firebase from 'firebase';
 import borrowerData from '../../../helpers/data/borrowerData';
 import userData from '../../../helpers/data/userData';
 
+import SecondaryNav from '../../shared/SecondaryNav/SecondaryNav';
+
 import './AddBorrower.scss';
 
 class AddBorrower extends React.Component {
@@ -64,40 +66,56 @@ class AddBorrower extends React.Component {
         const { borrowerFirstName, borrowerLastName, borrowerEmail } = this.state;
         return(
             <div className="AddBorrower">
-                <h1>Add A Borrower!</h1>
-                <form className="col-6 offset-3 text-left">
-                    <div className="form-group">
-                        <label htmlFor="borrower-first-name">Enter your friend's first name</label>
-                        <input
-                        type="text"
-                        className="form-control"
-                        id="borrower-first-name"
-                        value={borrowerFirstName}
-                        onChange={this.firstNameChange}
-                        />
+                <main className="container">
+                    <div className="row">
+                        <div className=" col-3 secondary-nav">
+                            <header>
+                                Do Stuff
+                            </header>
+                            <SecondaryNav />
+                        </div>
+                        <div className="col-9 d-flex flex-wrap">
+                            <header>
+                            <h1>Add A Borrower!</h1>
+                            </header>
+                            <form className="text-left">
+                                <div className="form-group">
+                                    <label htmlFor="borrower-first-name">Enter your friend's first name</label>
+                                    <input
+                                    type="text"
+                                    className="form-control"
+                                    id="borrower-first-name"
+                                    value={borrowerFirstName}
+                                    onChange={this.firstNameChange}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="borrower-last-name">Enter your friend's last name</label>
+                                    <input
+                                    type="text"
+                                    className="form-control"
+                                    id="borrower-last-name"
+                                    value={borrowerLastName}
+                                    onChange={this.lastNameChange}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="borrower-email">Enter your friend's email address</label>
+                                    <input
+                                    type="email"
+                                    className="form-control"
+                                    id="borrower-email"
+                                    value={borrowerEmail}
+                                    onChange={this.emailChange}
+                                    />
+                                </div>
+                                <button className="btn btn-primary" onClick={this.addNewBorrower}>Create Borrower</button>
+
+                            </form>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="borrower-last-name">Enter your friend's last name</label>
-                        <input
-                        type="text"
-                        className="form-control"
-                        id="borrower-last-name"
-                        value={borrowerLastName}
-                        onChange={this.lastNameChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="borrower-email">Enter your friend's email address</label>
-                        <input
-                        type="email"
-                        className="form-control"
-                        id="borrower-email"
-                        value={borrowerEmail}
-                        onChange={this.emailChange}
-                        />
-                    </div>
-                </form>
-                <button className="btn btn-primary" onClick={this.addNewBorrower}>Create Borrower</button>
+                </main>
+                
             </div>
         )
     }
