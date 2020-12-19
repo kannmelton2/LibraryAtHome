@@ -55,5 +55,15 @@ namespace LibraryAtHome.Controllers
             return Ok(newLibraryItemId);
         }
 
+        // PUT METHODS
+        // update library item to onShelf = true when it is returned
+        [HttpPut("put-OnShelf-{libraryItemId}")]
+        public IActionResult PutBookOnShelf(int libraryItemId)
+        {
+            _repo.AddBookToShelf(libraryItemId);
+
+            return Ok();
+        }
+
     }
 }

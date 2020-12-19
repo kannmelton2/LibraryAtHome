@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import libraryBookShape from '../../../helpers/propz/libraryBookShape';
 
@@ -7,10 +8,11 @@ import './LibraryBookCards.scss';
 class LibraryBookCards extends React.Component {
     static propTypes = {
         libraryBook: libraryBookShape.libraryBookShape,
+        returnLibraryBook: PropTypes.func.isRequired,
     }
 
     render() {
-        const { libraryBook } = this.props;
+        const { libraryBook, returnLibraryBook } = this.props;
         return(
             <section className="LibraryBookCards my-2 col-md-4">
                 <div className="card">
@@ -22,7 +24,7 @@ class LibraryBookCards extends React.Component {
                             libraryBook.onShelf ?
                             ''
                             :
-                            <button className="btn btn-primary">Return to library</button>
+                            <button className="btn btn-primary" onClick={() => returnLibraryBook(libraryBook.libraryItemId)}>Return to library</button>
                         }
                     </div>
                 </div>

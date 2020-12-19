@@ -19,11 +19,14 @@ const getLoanBooks = (loanId) => new Promise((resolve, reject) => {
     axios.get(`${baseUrl}/book/loan-${loanId}`)
     .then((response) => resolve(response.data))
     .catch((err) => reject(err));
-})
+});
+
+const putBookOnShelf = (libraryItemId) => axios.put(`${baseUrl}/libraryItem/put-onShelf-${libraryItemId}`);
 
 export default {
     addBookToLibrary,
     getLibraryBooks,
     getOnShelfLibraryBooks,
     getLoanBooks,
+    putBookOnShelf,
 };

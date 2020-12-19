@@ -38,16 +38,21 @@ class Home extends React.Component {
         .catch((err) => console.log('could not get library books', err));
     }
 
+    returnLibraryBook = (libraryItemId) => {
+        libraryItemData.putBookOnShelf(libraryItemId)
+        .then(() => this.getUserAndLibrary())
+        .catch((err) => console.log('could not put book on shelf'));
+    }
+
     componentDidMount() {
         this.getUserAndLibrary();
-        // this.getMyLibraryBooks();
     }
 
     render() {
         const { library, libraryBooks } = this.state;
 
         const buildLibraryBooks = libraryBooks.map((libraryBook) => (
-            <LibraryBookCards key={libraryBook.libraryItemId} libraryBook={libraryBook}/>
+            <LibraryBookCards key={libraryBook.libraryItemId} libraryBook={libraryBook} returnLibraryBook={this.returnLibraryBook}/>
           ));
 
         return(

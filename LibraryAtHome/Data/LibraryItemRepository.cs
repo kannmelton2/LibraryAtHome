@@ -58,5 +58,63 @@ namespace LibraryAtHome.Data
 
             return libraryItemId;
         }
+
+        // UPDATE onShelf to true when a LibraryItem is being returned
+        public void AddBookToShelf(int libraryItemId)
+        {
+            using var db = new SqlConnection(_connectionString);
+
+            // update the library item to be onShelf = 1 (true)
+            var query = @"UPDATE [dbo].[LibraryItem]
+                          SET [onShelf] = 1
+                          WHERE LibraryItemId = @libraryItem";
+
+            // update the loan item to be isReturned = 1 (true)
+            // we determine which loan item we want to target by using the libraryItemId and isReturned = 0 (false), since all loanItems with that libraryItemId should
+            // be isReturned = 1 (true)
+            var queryTwo = @"UPDATE [dbo].[LoanItem]
+                             SET [IsReturned] = 1
+                             OUTPUT Inserted.LoanId
+                             Where LibraryItemId = @libraryItem AND isReturned = 0";
+
+            var queryThree = @"Select *
+                               from LoanItem
+                               Where loanId = @loan";
+
+            var queryFour = @"UPDATE [dbo].[Loan]
+                              SET [Returned] = 1
+                              WHERE LoanId = @loan";
+
+
+
+            var parameters = new { libraryItem = libraryItemId };
+
+            // declare the loanId variable before assigning its value to a parameter for use in a query
+            var loanId = db.QuerySingle<int>(queryTwo, parameters);
+
+            var parametersThree = new { loan = loanId };
+
+            // create a loanItems variable to hold all the loanItems associated with a loanId
+            var loanItems = db.Query<LoanItem>(queryThree, parametersThree);
+
+            // determine if all the loanItems have been returned
+            var count = 0;
+            foreach (LoanItem loanItem in loanItems)
+            {
+                if (loanItem.isReturned)
+                {
+                    count++;
+                }
+            }
+
+            if (count == loanItems.Count()) {
+                // call queryFour
+                db.Execute(queryFour, parametersThree);
+            }
+
+            // if they have all been returned, update the loan to returned = 1
+
+            db.Execute(query, parameters);
+        }
     }
 }
