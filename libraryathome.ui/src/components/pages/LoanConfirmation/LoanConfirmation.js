@@ -4,6 +4,7 @@ import loanData from '../../../helpers/data/loanData';
 import libraryItemData from '../../../helpers/data/libraryItemData';
 
 import LoanBooks from '../../shared/LoanBooks/LoanBooks';
+import SecondaryNav from '../../shared/SecondaryNav/SecondaryNav';
 
 import './LoanConfirmation.scss';
 
@@ -33,7 +34,19 @@ class LoanConfirmation extends React.Component {
         return(
             <div className="LoanConfirmation">
                 <h1>Loan Confirmation Page</h1>
-                {buildLoanBooks}
+                <main className="container">
+                    <div className="row">
+                        <div className=" col-3 secondary-nav">
+                            <header>
+                                Do Stuff
+                            </header>
+                            <SecondaryNav />
+                        </div>
+                        <div className="col-9 d-flex flex-wrap loan-books text-center">
+                            {buildLoanBooks}
+                        </div>
+                    </div>
+                </main>
             </div>
         )
     }

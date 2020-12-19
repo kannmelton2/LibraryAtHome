@@ -134,7 +134,7 @@ class AddLoan extends React.Component {
           ));
 
           const bookOptions = libraryBooks.map((book) => (
-            <option key={book.bookId} value={book.bookId}>{book.title}</option>
+            <option key={book.libraryItemId} value={book.libraryItemId}>{book.title}</option>
           ));
         return(
             <div className="AddLoan">
