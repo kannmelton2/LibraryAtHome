@@ -103,7 +103,10 @@ class AddLoan extends React.Component {
         }
 
         loanData.addNewLoan(newLoan)
-        .then(() => this.getUserAndLibrary())
+        .then(() => {
+            this.getUserAndLibrary();
+            this.setState({ loanBookId: '' });
+        })
         .catch((err) => console.log('could not create loan', err))
       }
 
@@ -115,7 +118,10 @@ class AddLoan extends React.Component {
           }
 
           loanItemData.addLoanItem(newLoanItem)
-          .then(() => this.getUserAndLibrary())
+          .then(() => {
+            this.getUserAndLibrary();
+            this.setState({ loanBookId: '' });
+          })
           .catch((err) => console.log('could not create loan item', err))
       }
 
@@ -166,7 +172,7 @@ class AddLoan extends React.Component {
                 </form>
                 {
                     loan ?
-                    <button className="btn btn-primary" onClick={this.addToLoan}>Add Another Book</button> 
+                    <button className="btn btn-primary" onClick={this.addToLoan}>Add Book</button> 
                     :
                     <button className="btn btn-primary" onClick={this.createLoan}>Add Book</button>
                 }
