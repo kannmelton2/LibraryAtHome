@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import { Link } from 'react-router-dom';
 
 import borrowerData from '../../../helpers/data/borrowerData';
 import libraryItemData from '../../../helpers/data/libraryItemData';
@@ -77,6 +78,8 @@ class LoanCart extends React.Component {
 
         return(
             <main className="LoanCart">
+                { loan ?
+                <React.Fragment>
                 <header>
                     <h1>You are loaning...</h1>
                 </header>
@@ -106,6 +109,15 @@ class LoanCart extends React.Component {
                         </div>
                     </div>
                 </section>
+                </React.Fragment>
+                :
+                <React.Fragment>
+                    <p>You are not currently preparing a loan, would you like to start a new one?</p>
+                    <Link className="btn btn-primary" to='/add-loan'>Create A Loan</Link>
+                </React.Fragment>
+                
+                }
+                
             </main>
         )
     }
