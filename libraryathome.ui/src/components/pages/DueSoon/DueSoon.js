@@ -47,9 +47,7 @@ class DueSoon extends React.Component {
 
         return(
             <div className="DueSoon">
-                <header>
-                    <h1>Due Soon:</h1>
-                </header>
+                
                 <main className="container">
                     <div className="row">
                         <div className=" col-3 secondary-nav">
@@ -59,6 +57,9 @@ class DueSoon extends React.Component {
                             <SecondaryNav />
                         </div>
                         <div className="col-9 d-flex flex-wrap loans text-center">
+                            <header>
+                                <h1>Due Soon:</h1>
+                            </header>
                             {buildLoans}
                         </div>
                     </div>

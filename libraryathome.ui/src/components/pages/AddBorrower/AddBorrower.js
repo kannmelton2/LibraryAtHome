@@ -110,7 +110,6 @@ class AddBorrower extends React.Component {
                                     />
                                 </div>
                                 <button className="btn btn-primary" onClick={this.addNewBorrower}>Create Borrower</button>
-
                             </form>
                         </div>
                     </div>

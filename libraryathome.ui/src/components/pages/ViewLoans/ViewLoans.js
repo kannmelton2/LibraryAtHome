@@ -47,9 +47,7 @@ class ViewLoans extends React.Component {
 
         return(
             <div className="ViewLoans">
-                <header>
-                    <h1>Current Loans:</h1>
-                </header>
+                
                 <main className="container">
                     <div className="row">
                         <div className=" col-3 secondary-nav">
@@ -59,6 +57,9 @@ class ViewLoans extends React.Component {
                             <SecondaryNav />
                         </div>
                         <div className="col-9 d-flex flex-wrap loans text-center">
+                            <header>
+                                <h1>Current Loans:</h1>
+                            </header>
                             {buildLoans}
                         </div>
                     </div>

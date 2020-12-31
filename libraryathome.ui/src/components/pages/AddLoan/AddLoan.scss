@@ -1,3 +1,14 @@
 .AddLoan {
-    display: block;
-}
+    margin-top: 2em;
+    width: 100%;
+    main {
+        margin-top: 2rem;
+    }
+    header {
+        width: 100%;
+        text-align: left;
+    }
+    form {
+        width: 60%;
+    }
+} 
