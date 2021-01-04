@@ -1,0 +1,11 @@
+@import './variables';
+
+  
+@mixin dark-pink-button {
+    background-color: $dark-pink;
+    color: white;
+    font-weight: 500;
+    &:hover {
+      background-color: #e6d3c4;   
+    }
+  }

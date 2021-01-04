@@ -42,10 +42,10 @@ class MyNavbar extends React.Component {
               return (
                   <React.Fragment>
                     <NavItem>
-                        <NavLink tag={RRNavLink} to="/browse-books">Browse Books</NavLink>
+                        <NavLink className="nav-link" tag={RRNavLink} to="/browse-books">Browse Books</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={RRNavLink} to="/loan-cart">Loan Cart</NavLink>
+                        <NavLink className="nav-link" tag={RRNavLink} to="/loan-cart">Loan Cart</NavLink>
                     </NavItem>
                   </React.Fragment>
 
@@ -56,20 +56,20 @@ class MyNavbar extends React.Component {
 
         return(
             <div className="MyNavbar">
-                <Navbar color="dark" dark expand="md">
-                    <NavbarBrand tag={RRNavLink} to="/home">LibraryAtHome</NavbarBrand>
+                <Navbar className="custom-navbar" dark expand="md">
+                    <NavbarBrand className="navbar-brand" tag={RRNavLink} to="/home">LibraryAtHome</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={isOpen} navbar>
-                <Nav className="mr-auto" navbar>
+                <Nav className="ml-auto" navbar>
                     {buildNavbar()}
                     {
                     authed ?
                         <NavItem>
-                            <button className="btn btn-warning" onClick={this.logMeOut}>Log Out</button>
+                            <button className="btn dark-pink-btn" onClick={this.logMeOut}>Log Out</button>
                         </NavItem>
                     :
                         <NavItem>
-                            <NavLink className="btn btn-info" tag={RRNavLink} to='/auth'>LogIn</NavLink>
+                            <NavLink className="btn dark-pink-btn" tag={RRNavLink} to='/auth'>LogIn</NavLink>
                         </NavItem>
                    }
                 </Nav>

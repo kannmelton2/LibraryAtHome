@@ -1,8 +1,15 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import './variables';
+@import './events';
 
 
 body {
   margin: 0;
+  background-color: $light-pink;
+  font-family: $quicksand-body;
+  h1 {
+    font-family: $playfair-display;
+  }
   .secondary-nav {
     text-align: left;
     header {
@@ -10,5 +17,8 @@ body {
         font-size: 1.3rem;
         font-weight: 600;
     }
-}
+  }
+  .dark-pink-btn {
+    @include dark-pink-button;
+  }
 }

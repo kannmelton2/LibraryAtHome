@@ -1,3 +1,14 @@
+@import '../../../styles/variables';
+
 .MyNavbar {
-    display: block;
+    .custom-navbar {
+        background-color: $dark-green;
+         .navbar-brand {
+            color: $light-pink;
+            font-family: $playfair-display;
+        }
+        .nav-link {
+            color: white;
+        }
+    }
 }
