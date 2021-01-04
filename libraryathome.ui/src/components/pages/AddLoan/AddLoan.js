@@ -148,9 +148,6 @@ class AddLoan extends React.Component {
                 <main className="container">
                     <div className="row">
                         <section className="col-3 secondary-nav">
-                            <header>
-                                Do Stuff
-                            </header>
                         <SecondaryNav />
                         </section>
                         <div className="col-9 d-flex flex-wrap">

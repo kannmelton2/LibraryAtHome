@@ -37,9 +37,6 @@ class LoanConfirmation extends React.Component {
                 <main className="container">
                     <div className="row">
                         <div className=" col-3 secondary-nav">
-                            <header>
-                                Do Stuff
-                            </header>
                             <SecondaryNav />
                         </div>
                         <div className="col-9 d-flex flex-wrap loan-books text-center">

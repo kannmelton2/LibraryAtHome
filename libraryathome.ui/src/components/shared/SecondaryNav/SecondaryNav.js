@@ -8,18 +8,20 @@ class SecondaryNav extends React.Component {
     render() {
         return(
             <Nav className="SecondaryNav">
-                
+                <header>
+                    <h2>Do Stuff</h2>
+                </header>
                 <NavItem>
-                    <NavLink tag={RRNavLink} to="/add-borrower">Add A Borrower</NavLink>
+                    <NavLink className="sec-nav-link" tag={RRNavLink} to="/add-borrower">Add A Borrower</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={RRNavLink} to="/add-loan">Create A Loan</NavLink>
+                    <NavLink className="sec-nav-link" tag={RRNavLink} to="/add-loan">Create A Loan</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={RRNavLink} to="/due-soon">Due Soon</NavLink>
+                    <NavLink className="sec-nav-link" tag={RRNavLink} to="/due-soon">Due Soon</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink tag={RRNavLink} to="/view-loans">See All Loans</NavLink>
+                    <NavLink className="sec-nav-link" tag={RRNavLink} to="/view-loans">See All Loans</NavLink>
                 </NavItem>
             </Nav>
         )
