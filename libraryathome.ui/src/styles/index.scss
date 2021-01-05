@@ -9,6 +9,7 @@ body {
   font-family: $quicksand-body;
   h1 {
     font-family: $playfair-display;
+    color: $dark-gray-text;
   }
   .secondary-nav {
     text-align: left;
@@ -20,5 +21,8 @@ body {
   }
   .dark-pink-btn {
     @include dark-pink-button;
+  }
+  .dark-green-btn {
+    @include dark-green-button;
   }
 }

@@ -4,8 +4,9 @@
     .custom-navbar {
         background-color: $dark-green;
          .navbar-brand {
-            color: $light-pink;
-            font-family: $playfair-display;
+            color: $med-pink;
+            text-shadow: .018rem .018rem .06rem #f3efef;
+            font-weight: 600;
         }
         .nav-link {
             color: white;

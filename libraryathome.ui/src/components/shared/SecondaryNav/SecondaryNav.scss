@@ -4,12 +4,13 @@
     display: block;
     h2 {
         font-family: $playfair-display;
+        color: $dark-gray-text;
     }
     .sec-nav-link {
-        color: $dark-green;
+        color: $dark-gray-text;
         font-weight: 600;
         &:hover {
-            color: $med-green;
+            color: $dark-green;
         }
     }
 }

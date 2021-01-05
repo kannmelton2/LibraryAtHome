@@ -15,7 +15,7 @@ class LibraryBookCards extends React.Component {
         const { libraryBook, returnLibraryBook } = this.props;
         return(
             <section className="LibraryBookCards my-2 col-md-4">
-                <div className="card">
+                <div className="card d-flex flex-wrap">
                     <img src={libraryBook.coverImage} className="card-img-top" alt={`cover of ${libraryBook.title}`} />
                     <div className="card-body">
                         { 
@@ -31,7 +31,7 @@ class LibraryBookCards extends React.Component {
                             libraryBook.onShelf ?
                             ''
                             :
-                            <button className="btn btn-primary" onClick={() => returnLibraryBook(libraryBook.libraryItemId)}>Return to library</button>
+                            <button className="btn dark-green-btn" onClick={() => returnLibraryBook(libraryBook.libraryItemId)}>Return to library</button>
                         }
                     </div>
                 </div>

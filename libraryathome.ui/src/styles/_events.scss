@@ -9,3 +9,13 @@
       background-color: #e6d3c4;   
     }
   }
+
+  @mixin dark-green-button {
+    background-color: $med-green;
+    color: #303030;
+    font-weight: 600;
+    &:hover {
+      background-color:$light-green;  
+      color: #303030; 
+    }
+  }
