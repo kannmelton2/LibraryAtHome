@@ -7,10 +7,10 @@ import './SecondaryNav.scss';
 class SecondaryNav extends React.Component {
     render() {
         return(
-            <Nav className="SecondaryNav">
+                <Nav className="SecondaryNav">
                 <header>
-                    <h2>Do Stuff</h2>
-                </header>
+                    <p>Do Stuff</p>
+                </header>              
                 <NavItem>
                     <NavLink className="sec-nav-link" tag={RRNavLink} to="/add-borrower">Add A Borrower</NavLink>
                 </NavItem>

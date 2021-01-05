@@ -2,7 +2,8 @@
 
 .SecondaryNav {
     display: block;
-    h2 {
+    p {
+        margin: 0;
         font-family: $playfair-display;
         color: $dark-gray-text;
     }

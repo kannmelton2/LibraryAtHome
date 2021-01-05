@@ -134,6 +134,7 @@ class AddLoan extends React.Component {
             loan,
             libraryBooks,
             loanBookId,
+            library
          } = this.state;
 
         const borrowerOptions = libraryBorrowers.map((borrower) => (
@@ -145,14 +146,18 @@ class AddLoan extends React.Component {
           ));
         return(
             <div className="AddLoan">
+                 <header className="page-header">
+                    <h1>{library.libraryName}</h1>
+                    <h2>Add a borrower, then as many books as you want, then review and complete your loan in the cart.</h2>
+                </header>
                 <main className="container">
                     <div className="row">
                         <section className="col-3 secondary-nav">
                         <SecondaryNav />
                         </section>
                         <div className="col-9 d-flex flex-wrap">
-                            <header>
-                                <h1>Add A Loan</h1>
+                            <header className="form-header">
+                                <p>Choose a borrower, then add as many books as you like.</p>
                             </header>
                             <form className="text-left">
                                 {/* ternary - if there is a loan, it shows who you are loaning to, if there is no loan, 
@@ -180,9 +185,9 @@ class AddLoan extends React.Component {
 
                                     {
                                     loan ?
-                                    <button className="btn btn-primary" onClick={this.addToLoan}>Add Book</button> 
+                                    <button className="btn dark-green-btn" onClick={this.addToLoan}>Add Book</button> 
                                     :
-                                    <button className="btn btn-primary" onClick={this.createLoan}>Add Book</button>
+                                    <button className="btn dark-green-btn" onClick={this.createLoan}>Add Book</button>
                                     }
                             </form>
                         </div>

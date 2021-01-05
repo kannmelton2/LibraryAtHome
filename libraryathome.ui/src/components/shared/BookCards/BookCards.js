@@ -32,7 +32,7 @@ class BookCards extends React.Component {
                         <h5 className="card-title">{book.title}</h5>
                         }
                         <p className="card-text">by {book.author}</p>
-                        <button onClick={this.addBookToLibrary} className="btn btn-primary">Add to library</button>
+                        <button onClick={this.addBookToLibrary} className="btn dark-green-btn">Add to library</button>
                     </div>
                 </div>
             </div>

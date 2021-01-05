@@ -1,12 +1,27 @@
+@import '../../../styles/variables';
+
 .AddBorrower {
-    margin-top: 2em;
+    margin-top: 2.25rem;
     width: 100%;
     main {
-        margin-top: 2rem;
+        margin-top: 3rem;
     }
-    header {
-        width: 100%;
-        text-align: left;
+    .page-header {
+        margin: 0 auto;
+        width: 80%;
+        text-align: center;
+        h2 {
+            width: 100%;
+            font-size: 1.45rem;
+        }
+    }
+    .form-header {
+        margin: 0;
+        font-family: $playfair-display;
+        font-size: 1.5rem;
+        p {
+            margin-bottom: .5rem;
+        }
     }
     form {
         width: 60%;
