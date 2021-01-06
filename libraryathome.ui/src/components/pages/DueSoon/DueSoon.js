@@ -58,7 +58,7 @@ class DueSoon extends React.Component {
                     <h1>{library.libraryName}</h1>
                     <p></p>
                 </header>
-                <main className="container">
+                <main className="container loan-content">
                     <div className="row">
                         <div className=" col-3 secondary-nav">
                             <SecondaryNav />
