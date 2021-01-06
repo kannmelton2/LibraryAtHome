@@ -1,6 +1,14 @@
+@import '../../../styles/variables';
+
 .LoanBooks {
     width: 100%;
+    margin: .5em 0;
     text-align: left;
+    .card {
+        width: 100%;
+        background-color: $light-pink;
+        color: #303030;
+    }
     .card-title {
         font-weight: 500;
         font-size: 1.25rem;

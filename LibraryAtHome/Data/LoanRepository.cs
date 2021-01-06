@@ -77,6 +77,7 @@ namespace LibraryAtHome.Data
             var query = @"select *
                           from Loan
                           Where DueDate between getDate() and DATEADD(day, 7, getDate())
+                          AND Returned = 0
                           AND UserId = @user";
 
             var parameters = new { user = userId };

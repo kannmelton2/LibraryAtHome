@@ -84,7 +84,7 @@ class AddBorrower extends React.Component {
                         </div>
                         <div className="col-9 d-flex flex-wrap">
                             <header className="form-header">
-                                <h3>Enter Your Friend or Relative's Information</h3>
+                                <p>Enter Your Friend or Relative's Information</p>
                             </header>
                             <form className="text-left">
                                 <div className="form-group">

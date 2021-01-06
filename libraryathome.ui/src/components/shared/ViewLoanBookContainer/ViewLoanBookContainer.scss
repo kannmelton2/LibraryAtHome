@@ -1,3 +1,17 @@
+@import '../../../styles/variables';
+
 .ViewLoanBookContainer {
-    display: block;
+    background-color: $med-green;
+    border-radius: .45em;
+    padding: .5rem 1rem;
+    p {
+        font-size: 1.25rem;
+        margin: .5rem;
+        padding: 0 .65rem;
+        font-weight: 600;
+        text-align: left;
+        .due-date {
+            color: #DC143C;
+        }
+    }
 }

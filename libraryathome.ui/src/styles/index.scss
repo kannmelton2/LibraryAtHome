@@ -18,6 +18,15 @@ body {
         font-size: 1.5rem;
     }
   }
+  .page-header {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    h2 {
+        width: 100%;
+        font-size: 1.45rem;
+    }
+}
   .dark-pink-btn {
     @include dark-pink-button;
   }
