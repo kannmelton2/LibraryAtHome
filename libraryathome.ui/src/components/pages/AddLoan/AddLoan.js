@@ -91,7 +91,8 @@ class AddLoan extends React.Component {
         this.setState({ loanBookId: e.target.value });
       }
 
-      createLoan = () => {
+      createLoan = (e) => {
+          e.preventDefault();
         const {
             user,
             loanBorrowerId,
@@ -111,7 +112,8 @@ class AddLoan extends React.Component {
         .catch((err) => console.log('could not create loan', err))
       }
 
-      addToLoan = () => {
+      addToLoan = (e) => {
+          e.preventDefault();
           const { loan, loanBookId } = this.state;
           const newLoanItem = {
               loanId: loan.loanId,

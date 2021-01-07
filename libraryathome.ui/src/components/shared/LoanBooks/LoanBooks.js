@@ -16,18 +16,15 @@ class LoanBooks extends React.Component {
         const { book, isComplete, deleteLoanBook } = this.props;
 
         return(
-            <main className="LoanBooks">
-                <div className="card">
-                    <div className="card-body">
-                    <p className="card-title">{book.title}</p>
-                    <p className="card-text">by: {book.author}</p>
+            <main className="LoanBooks d-flex">
+                    <div className="loan-books-card">
+                    <p className="loan-books-card-title">{book.title}</p>
+                    <p className="loan-books-card-text">by: {book.author}</p>
+                    </div>
                     { isComplete ?
                     '' :
-                    <button className="btn btn-dark" onClick={() => deleteLoanBook(book.libraryItemId)}>X</button>
+                    <button className="btn btn-dark btn-sm ml-auto" onClick={() => deleteLoanBook(book.libraryItemId)}>X</button>
                     }
-                    </div>
-                    
-                </div>
             </main>
         )
     }

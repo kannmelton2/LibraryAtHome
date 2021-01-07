@@ -2,19 +2,21 @@
 
 .LoanBooks {
     width: 100%;
-    margin: .5em 0;
+    margin: .5rem 0;
+    padding: .75rem;
+    border-radius: .45rem;
+    align-items: center;
     text-align: left;
-    .card {
-        width: 100%;
-        background-color: $light-pink;
-        color: #303030;
+    background-color: $light-pink;
+    color: #303030;
+    .loan-books-card-title {
+        font-weight: 600;
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
     }
-    .card-title {
-        font-weight: 500;
-        font-size: 1.25rem;
-    }
-    .card-text {
-        font-size: 1.125rem;
+    .loan-books-card-text {
+        font-size: 1rem;
     }
     .card-title, .card-text {
         margin: 0;

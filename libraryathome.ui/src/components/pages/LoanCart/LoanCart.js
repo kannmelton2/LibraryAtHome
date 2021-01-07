@@ -99,15 +99,12 @@ class LoanCart extends React.Component {
                         </div>
                         <div className="col-9 d-flex flex-wrap">
                             <div className="loan-books">
-                                <header className="books-header">
-                                    <p>You are loaning:</p>
-                                </header>
-                                <p>You are loaning the following books to {borrower.firstName} {borrower.lastName}</p>
+                            <p className="loan-borrower">You are loaning the following books to {borrower.firstName} {borrower.lastName}</p>
                             {buildLoanBooks}
                             </div>
-                            
-                                <button className="btn btn-danger m-5" onClick={this.cancelLoan}>Cancel Loan</button>
-                                <button className="btn btn-primary m-5" onClick={this.finishLoan}>Complete Loan</button>
+                            <button className="btn dark-pink-btn m-3" onClick={this.cancelLoan}>Cancel Loan</button>
+                            <button className="btn dark-green-btn m-3" onClick={this.finishLoan}>Complete Loan</button>
+                               
                         </div>
                     </div>
                 </section>
@@ -115,7 +112,7 @@ class LoanCart extends React.Component {
                 :
                 <React.Fragment>
                     <p>You are not currently preparing a loan, would you like to start a new one?</p>
-                    <Link className="btn btn-primary" to='/add-loan'>Create A Loan</Link>
+                    <Link className="btn dark-green-btn" to='/add-loan'>Create A Loan</Link>
                 </React.Fragment>
                 
                 }

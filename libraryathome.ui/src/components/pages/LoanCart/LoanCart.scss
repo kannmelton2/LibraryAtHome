@@ -8,24 +8,15 @@
     }
 
     .loan-books {
-        header {
-            p {
+        width: 100%;
+        background-color: $dark-green;
+        padding: 1em 1.25em;
+        border-radius: .45rem;
+        text-align: left;
+            .loan-borrower {
                 font-weight: 500;
                 font-size: 1.25rem;
+                color: white;
             }
-        }
-        width: 100%;
-        text-align: left;
     }
-
-    .books-header {
-        width: 100%;
-        text-align: left;
-        margin: 0;
-        font-family: $playfair-display;
-        font-size: 1.5rem;
-        p {
-            margin-bottom: .5rem;
-        }
-    } 
 }
