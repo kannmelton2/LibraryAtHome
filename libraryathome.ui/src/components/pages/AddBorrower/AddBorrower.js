@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 
 import borrowerData from '../../../helpers/data/borrowerData';
+import libraryData from '../../../helpers/data/libraryData';
 import userData from '../../../helpers/data/userData';
 
 import SecondaryNav from '../../shared/SecondaryNav/SecondaryNav';
@@ -11,18 +12,24 @@ import './AddBorrower.scss';
 class AddBorrower extends React.Component {
     state = {
         user: {},
+        library: {},
         borrowerFirstName: '',
         borrowerLastName: '',
         borrowerEmail: '',
     }
 
-    getUser = () => {
+    getUserAndLibrary = () => {
         const user = firebase.auth().currentUser;
-        console.log('current user:', user.email);
         const userEmail = user.email;
         
         userData.getUserByEmail(userEmail)
-        .then((user) => this.setState({ user }))
+        .then((user) => {
+            this.setState({ user })
+            libraryData.getLibraryByUserId(user.userId)
+            .then((library) => {
+                this.setState({ library })
+            })
+        })
     }
 
     firstNameChange = (e) => {
@@ -59,24 +66,25 @@ class AddBorrower extends React.Component {
     }
 
     componentDidMount() {
-        this.getUser();
+        this.getUserAndLibrary();
     }
 
     render() {
-        const { borrowerFirstName, borrowerLastName, borrowerEmail } = this.state;
+        const { borrowerFirstName, borrowerLastName, borrowerEmail, library } = this.state;
         return(
             <div className="AddBorrower">
+                <header className="page-header">
+                    <h1>{library.libraryName}</h1>
+                    <h2>Add borrowers to your library in order to loan books to them.</h2>
+                </header>
                 <main className="container">
                     <div className="row">
                         <div className=" col-3 secondary-nav">
-                            <header>
-                                Do Stuff
-                            </header>
                             <SecondaryNav />
                         </div>
                         <div className="col-9 d-flex flex-wrap">
-                            <header>
-                            <h1>Add A Borrower!</h1>
+                            <header className="form-header">
+                                <p>Enter Your Friend or Relative's Information</p>
                             </header>
                             <form className="text-left">
                                 <div className="form-group">
@@ -109,8 +117,7 @@ class AddBorrower extends React.Component {
                                     onChange={this.emailChange}
                                     />
                                 </div>
-                                <button className="btn btn-primary" onClick={this.addNewBorrower}>Create Borrower</button>
-
+                                <button className="btn dark-green-btn" onClick={this.addNewBorrower}>Create Borrower</button>
                             </form>
                         </div>
                     </div>

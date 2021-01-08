@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase';
 
+import libraryData from '../../../helpers/data/libraryData';
 import loanData from '../../../helpers/data/loanData';
 import userData from '../../../helpers/data/userData';
 
@@ -12,17 +13,22 @@ import './ViewLoans.scss';
 class ViewLoans extends React.Component {
     state = {
         user: {},
+        library: {},
         loans: [],
     }
 
-    getUser = () => {
+    getUserAndLibrary = () => {
         const user = firebase.auth().currentUser;
         const userEmail = user.email;
         
         userData.getUserByEmail(userEmail)
         .then((user) => {
             this.setState({ user })
-            this.getLoans();
+            libraryData.getLibraryByUserId(user.userId)
+            .then((library) => {
+                this.setState({ library })
+            })
+            .then(() => this.getLoans())
         })
     }
 
@@ -35,11 +41,11 @@ class ViewLoans extends React.Component {
     }
 
     componentDidMount() {
-        this.getUser();
+        this.getUserAndLibrary();
     }
 
     render() {
-        const { loans } = this.state;
+        const { loans, library } = this.state;
 
         const buildLoans = loans.map((loan) => (
             <ViewLoanBookContainer key={loan.loanId} loan={loan} />
@@ -47,18 +53,19 @@ class ViewLoans extends React.Component {
 
         return(
             <div className="ViewLoans">
-                <header>
-                    <h1>Current Loans:</h1>
+                <header className="page-header">
+                    <h1>{library.libraryName}</h1>
+                    <h2>See All of Your Current Loans Below</h2>
                 </header>
-                <main className="container">
+                <main className="container loan-content">
                     <div className="row">
                         <div className=" col-3 secondary-nav">
-                            <header>
-                                Do Stuff
-                            </header>
                             <SecondaryNav />
                         </div>
                         <div className="col-9 d-flex flex-wrap loans text-center">
+                            <header className="loans-header">
+                                <p>Current Loans:</p>
+                            </header>
                             {buildLoans}
                         </div>
                     </div>

@@ -1,3 +1,15 @@
+@import '../../../styles/variables';
+
 .MyNavbar {
-    display: block;
+    .custom-navbar {
+        background-color: $dark-green;
+         .navbar-brand {
+            color: $med-pink;
+            text-shadow: .018rem .018rem .06rem #f3efef;
+            font-weight: 600;
+        }
+        .nav-link {
+            color: #f3efef;
+        }
+    }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 import loanData from '../../../helpers/data/loanData';
 import libraryItemData from '../../../helpers/data/libraryItemData';
@@ -33,16 +34,16 @@ class LoanConfirmation extends React.Component {
 
         return(
             <div className="LoanConfirmation">
-                <h1>Loan Confirmation Page</h1>
-                <main className="container">
+                <header className="page-header">
+                <h1>Your Loan Is Confirmed</h1>
+                </header>
+                <main className="container loan-content">
                     <div className="row">
                         <div className=" col-3 secondary-nav">
-                            <header>
-                                Do Stuff
-                            </header>
                             <SecondaryNav />
                         </div>
                         <div className="col-9 d-flex flex-wrap loan-books text-center">
+                                <p className="books-header">These Books are Due Back {moment(loan.dueDate).format('L')}</p>
                             {buildLoanBooks}
                         </div>
                     </div>

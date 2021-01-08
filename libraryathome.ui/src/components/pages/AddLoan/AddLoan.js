@@ -4,13 +4,14 @@ import firebase from 'firebase';
 
 import borrowerData from '../../../helpers/data/borrowerData';
 import libraryData from '../../../helpers/data/libraryData';
+import libraryItemData from '../../../helpers/data/libraryItemData';
 import loanData from '../../../helpers/data/loanData';
 import loanItemData from '../../../helpers/data/loanItemData';
 import userData from '../../../helpers/data/userData';
 
+import SecondaryNav from '../../shared/SecondaryNav/SecondaryNav';
+
 import './AddLoan.scss';
-import bookData from '../../../helpers/data/bookData';
-import libraryItemData from '../../../helpers/data/libraryItemData';
 
 class AddLoan extends React.Component {
     state = {
@@ -90,7 +91,8 @@ class AddLoan extends React.Component {
         this.setState({ loanBookId: e.target.value });
       }
 
-      createLoan = () => {
+      createLoan = (e) => {
+          e.preventDefault();
         const {
             user,
             loanBorrowerId,
@@ -110,7 +112,8 @@ class AddLoan extends React.Component {
         .catch((err) => console.log('could not create loan', err))
       }
 
-      addToLoan = () => {
+      addToLoan = (e) => {
+          e.preventDefault();
           const { loan, loanBookId } = this.state;
           const newLoanItem = {
               loanId: loan.loanId,
@@ -133,6 +136,7 @@ class AddLoan extends React.Component {
             loan,
             libraryBooks,
             loanBookId,
+            library
          } = this.state;
 
         const borrowerOptions = libraryBorrowers.map((borrower) => (
@@ -144,38 +148,53 @@ class AddLoan extends React.Component {
           ));
         return(
             <div className="AddLoan">
-                <h1>Add A Loan</h1>
+                 <header className="page-header">
+                    <h1>{library.libraryName}</h1>
+                    <h2>Add a borrower, then as many books as you want, then review and complete your loan in the cart.</h2>
+                </header>
+                <main className="container">
+                    <div className="row">
+                        <section className="col-3 secondary-nav">
+                        <SecondaryNav />
+                        </section>
+                        <div className="col-9 d-flex flex-wrap">
+                            <header className="form-header">
+                                <p>Choose a borrower, then add as many books as you like.</p>
+                            </header>
+                            <form className="text-left">
+                                {/* ternary - if there is a loan, it shows who you are loaning to, if there is no loan, 
+                                it gives you the dropdown to pick someone */}
+                                { loan ? 
+                                <p>You are loaning to: {loanBorrower.firstName} {loanBorrower.lastName}</p> :
+                                <div className="form-group">
+                                    <label htmlFor="loan-borrower">Who would you like to loan a book to?</label>
+                                    <br />
+                                    <select id="loan-borrower" value={loanBorrowerId} onChange={this.loanBorrowerChange}>
+                                        <option>Select Borrower</option>
+                                        {borrowerOptions}
+                                    </select>
+                                </div>
+                                }
 
-                <form>
-                    {/* ternary - if there is a loan, it shows who you are loaning to, if there is no loan, 
-                    it gives you the dropdown to pick someone */}
-                    { loan ? 
-                        <p>You are loaning to: {loanBorrower.firstName} {loanBorrower.lastName}</p> :
-                        <div className="form-group">
-                            <label htmlFor="loan-borrower">Who would you like to loan a book to?</label>
-                            <br />
-                            <select id="loan-borrower" value={loanBorrowerId} onChange={this.loanBorrowerChange}>
-                                <option>Select Borrower</option>
-                                {borrowerOptions}
-                            </select>
+                                <div className="form-group">
+                                    <label htmlFor="loan-books">What book would you like to loan?</label>
+                                    <br />
+                                    <select id="loan-books" value={loanBookId} onChange={this.loanBookChange}>
+                                        <option>Select Book</option>
+                                        {bookOptions}
+                                    </select>
+                                </div>
+
+                                    {
+                                    loan ?
+                                    <button className="btn dark-green-btn" onClick={this.addToLoan}>Add Book</button> 
+                                    :
+                                    <button className="btn dark-green-btn" onClick={this.createLoan}>Add Book</button>
+                                    }
+                            </form>
                         </div>
-                    }
-
-                    <div className="form-group">
-                        <label htmlFor="loan-books">What book would you like to loan?</label>
-                        <br />
-                        <select id="loan-books" value={loanBookId} onChange={this.loanBookChange}>
-                            <option>Select Book</option>
-                            {bookOptions}
-                        </select>
                     </div>
-                </form>
-                {
-                    loan ?
-                    <button className="btn btn-primary" onClick={this.addToLoan}>Add Book</button> 
-                    :
-                    <button className="btn btn-primary" onClick={this.createLoan}>Add Book</button>
-                }
+                </main>
             </div>
         )
     }

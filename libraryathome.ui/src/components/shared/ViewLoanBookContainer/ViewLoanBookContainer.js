@@ -41,14 +41,9 @@ class ViewLoanBookContainer extends React.Component {
 
         return(
             <div className="ViewLoanBookContainer">
-                <p>{moment(loan.dueDate).format('L')}</p>
+                <p>Loan Due: <span className="due-date">{moment(loan.dueDate).format('L')}</span></p>
+                <p>The following books are being loaned to: {borrower.firstName} {borrower.lastName}</p>
                 {buildLoanBooks}
-                <div className="loan-borrower">
-                    <header>
-                        <p>You are loaning the above books to:</p>
-                    </header>
-                        <p className="card">{borrower.firstName} {borrower.lastName}</p>
-                </div>
             </div>
         )
     }

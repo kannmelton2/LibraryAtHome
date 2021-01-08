@@ -1,3 +1,17 @@
+@import '../../../styles/variables';
+
 .SecondaryNav {
     display: block;
+    p {
+        margin: 0;
+        font-family: $playfair-display;
+        color: $dark-gray-text;
+    }
+    .sec-nav-link {
+        color: $dark-gray-text;
+        font-weight: 600;
+        &:hover {
+            color: $dark-green;
+        }
+    }
 }

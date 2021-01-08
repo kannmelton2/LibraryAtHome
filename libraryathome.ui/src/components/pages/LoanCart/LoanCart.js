@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 
 import borrowerData from '../../../helpers/data/borrowerData';
+import libraryData from '../../../helpers/data/libraryData';
 import libraryItemData from '../../../helpers/data/libraryItemData';
 import loanData from '../../../helpers/data/loanData';
 import loanItemData from '../../../helpers/data/loanItemData';
@@ -16,6 +17,7 @@ import './LoanCart.scss';
 class LoanCart extends React.Component {
     state = {
         user: {},
+        library: {},
         loan: {},
         books: [],
         borrower: {},
@@ -34,13 +36,19 @@ class LoanCart extends React.Component {
         .catch((err) => console.log('could not get loan information', err));
     }
 
-    getUser = () => {
+    getUserAndLibrary = () => {
         const user = firebase.auth().currentUser;
         const userEmail = user.email;
         
         userData.getUserByEmail(userEmail)
-        .then((user) => this.setState({ user }))
-        .then(() => this.getCartInfo());
+        .then((user) => {
+            this.setState({ user })
+            libraryData.getLibraryByUserId(user.userId)
+            .then((library) => {
+                this.setState({ library })
+            })
+            .then(() => this.getCartInfo())
+        })
     }
 
     deleteLoanBook = (libraryItemId) => {
@@ -66,11 +74,11 @@ class LoanCart extends React.Component {
     }
 
     componentDidMount() {
-        this.getUser();
+        this.getUserAndLibrary();
     }
 
     render() {
-        const { books, borrower, loan } = this.state;
+        const { books, borrower, loan, library } = this.state;
 
         const buildLoanBooks = books.map((book) => (
             <LoanBooks key={book.libraryItemId} book={book} deleteLoanBook={this.deleteLoanBook} isComplete={loan.isComplete}/>
@@ -80,32 +88,23 @@ class LoanCart extends React.Component {
             <main className="LoanCart">
                 { loan ?
                 <React.Fragment>
-                <header>
-                    <h1>You are loaning...</h1>
+                <header className="page-header">
+                    <h1>{library.libraryName}</h1>
+                    <h2>Complete or cancel your in-progress loan</h2>
                 </header>
                 <section className="container">
                     <div className="row">
                         <div className="col-3 secondary-nav">
-                            <header>
-                                Do Stuff
-                            </header>
                             <SecondaryNav />
                         </div>
                         <div className="col-9 d-flex flex-wrap">
                             <div className="loan-books">
-                                <header>
-                                    <p>You are loaning the following books:</p>
-                                </header>
+                            <p className="loan-borrower">You are loaning the following books to {borrower.firstName} {borrower.lastName}</p>
                             {buildLoanBooks}
                             </div>
-                            <div className="loan-borrower">
-                                <header>
-                                    <p>You are loaning the above books to:</p>
-                                </header>
-                                <p className="card">{borrower.firstName} {borrower.lastName}</p>
-                            </div>
-                                <button className="btn btn-danger m-5" onClick={this.cancelLoan}>Cancel Loan</button>
-                                <button className="btn btn-primary m-5" onClick={this.finishLoan}>Complete Loan</button>
+                            <button className="btn dark-pink-btn m-3" onClick={this.cancelLoan}>Cancel Loan</button>
+                            <button className="btn dark-green-btn m-3" onClick={this.finishLoan}>Complete Loan</button>
+                               
                         </div>
                     </div>
                 </section>
@@ -113,7 +112,7 @@ class LoanCart extends React.Component {
                 :
                 <React.Fragment>
                     <p>You are not currently preparing a loan, would you like to start a new one?</p>
-                    <Link className="btn btn-primary" to='/add-loan'>Create A Loan</Link>
+                    <Link className="btn dark-green-btn" to='/add-loan'>Create A Loan</Link>
                 </React.Fragment>
                 
                 }

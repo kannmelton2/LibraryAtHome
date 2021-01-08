@@ -1,6 +1,13 @@
+@import '../../../styles/variables';
+
 .LibraryBookCards {
+    text-align: left;
     .card {
         height: 100%;
+        .card-title {
+            font-family: $playfair-display;
+            text-align: left;
+        }
     }
     img {
         width: 100%;

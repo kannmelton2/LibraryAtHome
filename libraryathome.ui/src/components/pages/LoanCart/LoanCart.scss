@@ -1,43 +1,22 @@
+@import '../../../styles/variables';
+
 .LoanCart {
     margin-top: 2em;
     width: 100%;
-    main {
+    section {
         margin-top: 2rem;
     }
 
     .loan-books {
-        header {
-            p {
+        width: 100%;
+        background-color: $dark-green;
+        padding: 1em 1.25em;
+        border-radius: .45rem;
+        text-align: left;
+            .loan-borrower {
                 font-weight: 500;
                 font-size: 1.25rem;
+                color: white;
             }
-        }
-        width: 100%;
-        text-align: left;
     }
-
-    .loan-borrower {
-        width: 100%;
-        height: 3rem;
-        text-align: left;
-        font-size: 1.25rem;
-        font-weight: 500;
-        p {
-            padding: .5rem;
-            padding-top: .25rem;
-            margin: 0;
-
-        }
-    }
-    
-    .secondary-nav {
-        text-align: left;
-        header {
-            padding: 8px 16px;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-    }
-
-    
 }

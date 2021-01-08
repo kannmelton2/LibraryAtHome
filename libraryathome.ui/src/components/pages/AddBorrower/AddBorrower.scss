@@ -1,19 +1,17 @@
+@import '../../../styles/variables';
+
 .AddBorrower {
-    margin-top: 2em;
+    margin-top: 2.25rem;
     width: 100%;
     main {
-        margin-top: 2rem;
+        margin-top: 3rem;
     }
-    header {
-        width: 100%;
-        text-align: left;
-    }
-    .secondary-nav {
-        text-align: left;
-        header {
-            padding: 8px 16px;
-            font-size: 1.3rem;
-            font-weight: 600;
+    .form-header {
+        margin: 0;
+        font-family: $playfair-display;
+        font-size: 1.5rem;
+        p {
+            margin-bottom: .5rem;
         }
     }
     form {

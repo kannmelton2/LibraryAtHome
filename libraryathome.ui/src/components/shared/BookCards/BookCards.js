@@ -25,9 +25,14 @@ class BookCards extends React.Component {
                 <div className="card">
                     <img src={book.coverImage} className="card-img-top" alt={`cover of ${book.title}`} />
                     <div className="card-body">
+                        { 
+                        book.title.length > 25 ?
+                        <h5 className="card-title">{book.title.substr(0, 25)}...</h5>
+                        :
                         <h5 className="card-title">{book.title}</h5>
+                        }
                         <p className="card-text">by {book.author}</p>
-                        <button onClick={this.addBookToLibrary} className="btn btn-primary">Add to library</button>
+                        <button onClick={this.addBookToLibrary} className="btn dark-green-btn">Add to library</button>
                     </div>
                 </div>
             </div>
