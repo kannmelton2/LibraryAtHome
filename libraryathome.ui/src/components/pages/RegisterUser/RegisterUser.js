@@ -72,10 +72,12 @@ class RegisterUser extends React.Component {
         } = this.state;
 
         return(
-            <div className="RegisterUser">
+            <div className="RegisterUser d-flex flex-wrap justify-content-center text-left">
+              <header className="page-header">
                 <h1>Welcome to Library At Home</h1>
                 <p>Please log in register to make use of our services:</p>
-      <form className="col-6 offset-3 text-left">
+              </header>
+      <form className="register-form">
         <div className="form-group">
         <label htmlFor="user-first-name">First Name</label>
       <input
@@ -126,8 +128,8 @@ class RegisterUser extends React.Component {
         onChange={this.passwordChange}
         />
         </div>
-        <Link className="btn btn-dark m-2" to="/auth">Log in</Link>
-        <button className="btn btn-primary m-2" onClick={this.saveNewUser}>Save New User</button>
+        <Link className="btn dark-pink-btn m-2" to="/auth">Log in</Link>
+        <button className="btn dark-green-btn m-2" onClick={this.saveNewUser}>Save New User</button>
       </form>
             </div>
         )

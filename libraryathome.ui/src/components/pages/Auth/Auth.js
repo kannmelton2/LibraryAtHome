@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-
+import './Auth.scss';
 
 import authRequests from '../../../helpers/data/authData';
 
@@ -42,15 +42,16 @@ class Auth extends React.Component {
   render () {
     const { user } = this.state;
     return (
-      <div className="Login">
-        <div id="login-form">
+      <div className="Auth">
+        <div id="login-form" className="d-flex flex-wrap text-center justify-content-center">
           <h1 className="text-center">Login</h1>
-          <form className="form-horizontal col-sm-6 col-sm-offset-3">
+          <p className="form-header"></p>
+          <form className="form-horizontal justify-content">
             <div className="form-group">
-              <label htmlFor="inputEmail" className="col-sm-8 control-label">
+              <label htmlFor="inputEmail" className="control-label">
                 Email:
               </label>
-              <div className="col-sm-20">
+              <div>
                 <input
                   type="email"
                   className="form-control"
@@ -62,10 +63,10 @@ class Auth extends React.Component {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="inputPassword" className="col-sm-8 control-label">
+              <label htmlFor="inputPassword" className="control-label">
                 Password:
               </label>
-              <div className="col-sm-20">
+              <div>
                 <input
                   type="password"
                   className="form-control"
@@ -77,15 +78,15 @@ class Auth extends React.Component {
               </div>
             </div>
             <div className="form-group">
-              <div className="col-sm-12 text-center">
+              <div className="text-center">
                 <Link to="/register">Register</Link>
               </div>
             </div>
             <div className="form-group">
-              <div className="col-sm-12">
+              <div>
                 <button
                   type="submit"
-                  className="btn btn-default col-xs-12"
+                  className="btn dark-green-btn"
                   onClick={this.loginClickEvent}
                 >
                   Login
