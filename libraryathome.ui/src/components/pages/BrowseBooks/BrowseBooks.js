@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import Swal from 'sweetalert2';
 
 import bookData from '../../../helpers/data/bookData';
 import libraryData from '../../../helpers/data/libraryData';
@@ -15,19 +16,28 @@ class BrowseBooks extends React.Component {
         books: [],
         user: {},
         library: {},
+        libraryBooks: [],
     }
 
     getUserAndLibrary = () => {
         const user = firebase.auth().currentUser;
-        console.log('current user:', user.email);
         const userEmail = user.email;
         
         userData.getUserByEmail(userEmail)
         .then((user) => {
             this.setState({ user })
             libraryData.getLibraryByUserId(user.userId)
-            .then((library) => this.setState({ library }))
+            .then((library) => {
+                this.setState({ library })
+            })
+            .then(() => this.getLibraryBooks())
         })
+    }
+
+    getLibraryBooks = () => {
+        libraryItemData.getLibraryBooks(this.state.library.libraryId)
+        .then((libraryBooks) => this.setState({ libraryBooks }))
+        .catch((err) => console.log('could not get library books', err));
     }
 
     getBooks = () => {
@@ -38,17 +48,37 @@ class BrowseBooks extends React.Component {
         .catch((err) => console.log('could not get books', err));
     }
 
+    isALibraryBook = (booksId) => {
+        const librarysBooks = this.state.libraryBooks;
+        const librarysBook = librarysBooks.find(x => x.bookId === booksId);
+        return librarysBook;
+    }
+
     addABookToLibrary = (newBookId) => {
         const libraryItem = {
             libraryId: this.state.library.libraryId,
             bookId: newBookId,
         }
-        
-        libraryItemData.addBookToLibrary(libraryItem)
-        .then(() => {
-            this.getBooks();
-            this.getUserAndLibrary();
-        })
+
+        const libraryBook = this.isALibraryBook(newBookId);
+
+        if (libraryBook) {
+            Swal.fire({
+                background: ' #b7b7a4',
+                iconColor: '#efefef',
+                title: 'Error!',
+                text: 'This book is already in your library',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+            console.log('in library, should not be added');
+        } else {
+            libraryItemData.addBookToLibrary(libraryItem)
+            .then(() => {
+                this.getBooks();
+                this.getUserAndLibrary();
+            })
+        }
     }
 
     componentDidMount() {
