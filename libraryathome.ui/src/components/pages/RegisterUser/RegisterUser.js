@@ -75,7 +75,7 @@ class RegisterUser extends React.Component {
             <div className="RegisterUser d-flex flex-wrap justify-content-center text-left">
               <header className="page-header">
                 <h1>Welcome to Library At Home</h1>
-                <p>Please log in register to make use of our services:</p>
+                <p>Please log in or register to make use of our services:</p>
               </header>
       <form className="register-form">
         <div className="form-group">
